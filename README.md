@@ -1,8 +1,8 @@
-# AZ-400: Designing and Implementing Microsoft DevOps Solutions
+# Azure Journey - Learning Experience.
 
 ## Welcome
 
-This repository is for instructors teaching Microsoft courses. If you are in class, please ask your instructor for assistance. 
+This repository is for training developers based on the content of the course AZ-204: Developing solutions for Microsoft Azure.
 
 - **[Link to labs (HTML format)](https://microsoftlearning.github.io/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions/)**
 - **Are you a MCT?** - Have a look at our [GitHub User Guide for MCTs](https://microsoftlearning.github.io/MCT-User-Guide/)
