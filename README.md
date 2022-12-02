@@ -4,12 +4,16 @@
 
 This repository is for training developers based on the content of the course AZ-204: Developing solutions for Microsoft Azure.
 
+The objective of this course is to teach developers how to create end-to-end solutions in Microsoft Azure. Students will learn how to implement Azure compute solutions, create Azure Functions, implement and manage web apps, develop solutions utilizing Azure storage, implement authentication and authorization, and secure their solutions by using KeyVault and Managed Identities. Students will also learn how to connect to and consume Azure services and third-party services, and include event- and message-based models in their solutions. The course also covers monitoring, troubleshooting, and optimizing Azure solutions.
+
+## Requirements
+
 - **[Link to labs (HTML format)](https://microsoftlearning.github.io/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions/)**
 - **Are you a MCT?** - Have a look at our [GitHub User Guide for MCTs](https://microsoftlearning.github.io/MCT-User-Guide/)
 - **[Download Latest Student Handbook and AllFiles Content](../../releases/latest)**
 - **Need to manually build the lab instructions?** - Instructions are available in the [MicrosoftLearning/Docker-Build](https://github.com/MicrosoftLearning/Docker-Build) repository
 
-## Security Issue - February 2022
+## About the AZ-204 Course
 
 Some Azure training labs instruct the student to use a specific user name and password. Bad actors constantly scan virtual machines and try to log in using those credentials.
 Once they login the machines can be used for crypto-mining or other non-classroom activities.
