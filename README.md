@@ -34,14 +34,14 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
   * Publish an image to the Azure Container Registry
   * Run containers by using Azure Container Instance
 
-### [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/2%20-%20Create%20Azure%20App%20Service%20Web%20Apps/README.md)
+### [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/README.md)
 
   * Create an Azure App Service Web App
   * Enable diagnostics logging
   * Configure web app settings
   * Implement autoscaling rules (schedule, operational/system metrics)
 
-### [Implemente Azure functions](https://github.com/airan-tw/azure_training/blob/main/M1/3%20-%20Implement%20Azure%20functions/README.md)
+### [Implemente Azure functions](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Azure%20functions/README.md)
 
   * Implement input and output bindings for a function
   * Implement function triggers by using data operations, timers, and webhooks
