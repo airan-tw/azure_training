@@ -26,6 +26,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 Develop Azure compute solutions (25-30%)
 =====
+
 ## [Implement IaaS solutions](https://github.com/airan-tw/azure_training/edit/main/M1/1%20-%20Implement%20Iaas%20solutions/README.md)
 
   * Provision VMs
@@ -33,3 +34,34 @@ Develop Azure compute solutions (25-30%)
   * Create container images for solutions
   * Publish an image to the Azure Container Registry
   * Run containers by using Azure Container Instance
+
+## [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/2%20-%20Create%20Azure%20App%20Service%20Web%20Apps/README.md)
+
+  * Create an Azure App Service Web App
+  * Enable diagnostics logging
+  * Configure web app settings
+  * Implement autoscaling rules (schedule, operational/system metrics)
+
+## [Implemente Azure functions](https://github.com/airan-tw/azure_training/blob/main/M1/3%20-%20Implement%20Azure%20functions/README.md)
+
+  * Implement input and output bindings for a function
+  * Implement function triggers by using data operations, timers, and webhooks
+  * Implement Azure Durable Functions
+
+Develop for Azure storage (10-15%)
+=====
+
+## [Develop solutions that use Cosmos DB storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/README.md)
+
+  * Select the appropriate API for your solution
+  * Implement partitioning schemes
+  * Interact with data using the appropriate SDK
+  * Set the appropriate consistency level for operations
+  * Create Cosmos DB containers
+
+## [Develop solutions that use blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/README.md)
+
+  * Move items in Blob storage between storage accounts or containers
+  * Set and retrieve properties and metadata
+  * Interact with data using the appropriate SDK
+  * Implement data archiving and retention
