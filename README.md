@@ -119,6 +119,6 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 ### [Develop message-based solutions](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20message-based%20solutions/README.md)
 
-  * implement solutions that use Azure Service Bus
-  * implement solutions that use Azure Queue Storage queues
+  * Implement solutions that use Azure Service Bus
+  * Implement solutions that use Azure Queue Storage queues
 <br>
