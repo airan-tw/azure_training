@@ -15,3 +15,20 @@ The objective of this course is to teach developers how to create end-to-end sol
 
 ## About the AZ-204 Course
 
+This course should help you understand what to expect on the exam and includes a summary of the topics the exam might cover and links to additional resources.
+
+
+Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
+
+
+![alt text](images/az204_skills.png)
+
+
+Develop Azure compute solutions (25-30%)
+=====
+## Implement IaaS solutions
+  * Provision VMs
+  * Create ARM Templates
+  * Create container images for solutions
+  * Publish an image to the Azure Container Registry
+  * Run containers by using Azure Container Instance
