@@ -24,10 +24,9 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 ![alt text](images/az204_skills.png)
 <br>
 
-Develop Azure compute solutions (25-30%)
-=====
+## Develop Azure compute solutions (25-30%)
 
-## [Implement IaaS solutions](https://github.com/airan-tw/azure_training/edit/main/M1/1%20-%20Implement%20Iaas%20solutions/README.md)
+### [Implement IaaS solutions](https://github.com/airan-tw/azure_training/edit/main/M1/1%20-%20Implement%20Iaas%20solutions/README.md)
 
   * Provision VMs
   * Create ARM Templates
@@ -35,24 +34,23 @@ Develop Azure compute solutions (25-30%)
   * Publish an image to the Azure Container Registry
   * Run containers by using Azure Container Instance
 
-## [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/2%20-%20Create%20Azure%20App%20Service%20Web%20Apps/README.md)
+### [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/2%20-%20Create%20Azure%20App%20Service%20Web%20Apps/README.md)
 
   * Create an Azure App Service Web App
   * Enable diagnostics logging
   * Configure web app settings
   * Implement autoscaling rules (schedule, operational/system metrics)
 
-## [Implemente Azure functions](https://github.com/airan-tw/azure_training/blob/main/M1/3%20-%20Implement%20Azure%20functions/README.md)
+### [Implemente Azure functions](https://github.com/airan-tw/azure_training/blob/main/M1/3%20-%20Implement%20Azure%20functions/README.md)
 
   * Implement input and output bindings for a function
   * Implement function triggers by using data operations, timers, and webhooks
   * Implement Azure Durable Functions
  <br>
 
-Develop for Azure storage (10-15%)
-=====
+## Develop for Azure storage (10-15%)
 
-## [Develop solutions that use Cosmos DB storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/README.md)
+### [Develop solutions that use Cosmos DB storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/README.md)
 
   * Select the appropriate API for your solution
   * Implement partitioning schemes
@@ -60,7 +58,7 @@ Develop for Azure storage (10-15%)
   * Set the appropriate consistency level for operations
   * Create Cosmos DB containers
 
-## [Develop solutions that use blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/README.md)
+### [Develop solutions that use blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/README.md)
 
   * Move items in Blob storage between storage accounts or containers
   * Set and retrieve properties and metadata
@@ -68,32 +66,30 @@ Develop for Azure storage (10-15%)
   * Implement data archiving and retention
 <br>
 
-Implement Azure security (15-20%)
-=====
+## Implement Azure security (15-20%)
 
-## [Implement use authentication and authorization](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/README.md)
+### [Implement use authentication and authorization](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/README.md)
 
   * Implement OAuth2 authentication
   * Create and implement shared access signatures
   * Register apps and use Azure Active Directory to authenticate users
 
-## [Implement secure cloud solutions](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20secure%20cloud%20solutions/README.md)
+### [Implement secure cloud solutions](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20secure%20cloud%20solutions/README.md)
 
   * Secure app configuration data by using the App Configuration and KeyVault API
   * Manage keys, secrets, and certificates by using the KeyVault API
   * Implement Managed Identities for Azure resources
 <br>
 
-Monitor, troubleshoot, and optimize Azure solutions (10-15%)
-=====
+## Monitor, troubleshoot, and optimize Azure solutions (10-15%)
 
-## [Integrate caching and content delivery within solutions](https://github.com/airan-tw/azure_training/blob/main/M4/Integrate%20caching%20and%20content%20delivery%20within%20solutions/README.md)
+### [Integrate caching and content delivery within solutions](https://github.com/airan-tw/azure_training/blob/main/M4/Integrate%20caching%20and%20content%20delivery%20within%20solutions/README.md)
 
   * Develop code to implement CDN’s in solutions
   * Configure cache and expiration policies
   * Store and retrieve data in Azure Redis cache
 
-## [Instrument solutions to support monitoring and logging](https://github.com/airan-tw/azure_training/blob/main/M4/Instrument%20solutions%20to%20support%20monitoring%20and%20logging/README.md)
+### [Instrument solutions to support monitoring and logging](https://github.com/airan-tw/azure_training/blob/main/M4/Instrument%20solutions%20to%20support%20monitoring%20and%20logging/README.md)
 
   * Configure instrumentation in an app or service by using Application Insights
   * Analyze and troubleshoot solutions by using Azure Monitor
@@ -101,28 +97,27 @@ Monitor, troubleshoot, and optimize Azure solutions (10-15%)
   * Implement code that handles transient faults
 <br>
 
-Connect to and consume Azure services and third-party services (25-30%)
-=====
+## Connect to and consume Azure services and third-party services (25-30%)
 
-## [Develop an App Service Logic App](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20an%20App%20Service%20Logic%20App/README.md)
+### [Develop an App Service Logic App](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20an%20App%20Service%20Logic%20App/README.md)
 
   * Create a Logic App
   * Create a custom connector for Logic Apps
   * Create a custom template for Logic Apps
 
-## [Implement API Management](https://github.com/airan-tw/azure_training/blob/main/M5/Implement%20API%20Management/README.md)
+### [Implement API Management](https://github.com/airan-tw/azure_training/blob/main/M5/Implement%20API%20Management/README.md)
 
   * Create an APIM instance
   * Configure authentication for APIs
   * Define policies for APIs
 
-## [Develop event-based solutions](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20event-based%20solutions/README.md)
+### [Develop event-based solutions](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20event-based%20solutions/README.md)
 
   * Implement solutions that use Azure Event Grid
   * Implement solutions that use Azure Notification Hubs
   * Implement solutions that use Azure Event Hub
 
-## [Develop message-based solutions](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20message-based%20solutions/README.md)
+### [Develop message-based solutions](https://github.com/airan-tw/azure_training/blob/main/M5/Develop%20message-based%20solutions/README.md)
 
   * implement solutions that use Azure Service Bus
   * implement solutions that use Azure Queue Storage queues
