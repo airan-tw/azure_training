@@ -1,5 +1,6 @@
 
 ## Provision Virtual Machines in Azure
+---
 
 ### Azure virtual machines
 
@@ -60,11 +61,15 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 ![alt text](images/provision_vm_03.png)
 ### What is a fault domain?
 A fault domain is a logical group of hardware in Azure that shares a common power source and network switch. You can think of it as a rack within an on-premises datacenter. The first two VMs in an availability set will be provisioned into two different racks so that if the network or the power failed in a rack, only one VM would be affected. Fault domains are also defined for managed disks attached to VMs.
+<br>
+<br> 
 
 ![alt text](images/provision_vm_04.png)
 Each virtual machine in your availability set is assigned an update domain and a fault domain by the underlying Azure platform.
 
 For a given availability set, five non-user-configurable update domains are assigned by to indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.
+<br>
+<br> 
 
 ![alt text](images/provision_vm_05.png)
 ### What if my size needs change?
@@ -74,9 +79,14 @@ If you stop and deallocate the VM, you can then select any size available in you
 **Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
 
 <br>
+<br> 
 
-![alt text](images/provision_vm_06.png)
+
+
+---
+
 # Exercise: Create a virtual machine by using the Azure CLI
+![alt text](images/provision_vm_06.png)
 
 In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
   * Create a resource group and a virtual machine
@@ -163,3 +173,4 @@ You can now safely delete the `az204-vm-rg` resource group from your account by 
 ```azurecli-interactive
 az group delete --name az204-vm-rg --no-wait
 ```
+> **Note**: This operation takes on average 5 - 10 minutes
