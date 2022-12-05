@@ -154,19 +154,12 @@ sudo apt-get -y install nginx
 
 Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
 
-![IIS default site](./media/quick-create-powershell/default-iis-website.png)
+![alt text](images/provision_vm_09.png)
 
 ## Clean up resources
 
-When no longer needed, you can use the [az group delete](/cli/azure/group) command to remove the resource group, VM, and all related resources:
+You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
 
 ```azurecli-interactive
-az group delete --name myResourceGroup
+az group delete --name az204-vm-rg --no-wait
 ```
-
-## Next steps
-
-In this quickstart, you deployed a simple virtual machine, open a network port for web traffic, and installed a basic web server. To learn more about Azure virtual machines, continue to the tutorial for Windows VMs.
-
-> [!div class="nextstepaction"]
-> [Azure Windows virtual machine tutorials](./tutorial-manage-vm.md)
