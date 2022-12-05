@@ -2,6 +2,15 @@
 
 This module instructs students on how to use create VMs and container images to use in their solutions. It covers creating VMs, using ARM templates to automate resource deployment, create and manage Docker images, publishing an image to the Azure Container Registry, and running a container in Azure Container Instances.
 
+## Modules in this learning path:
+
+* [Provisioning VMs in Azure](#provision-vms)
+* Create and deploy ARM templates
+* Create container images for solutions
+* Publish a container image to Azure Container Registry
+* Create and run container images in Azure Container Instances
+<br>
+
 <a id="provision-vms" />
 
 ## Provision Virtual Machines in Azure
@@ -38,7 +47,9 @@ Windows VMs have extensions which give your VM additional capabilities through p
 * **Collect diagnostics data:** The Azure Diagnostics Extension helps you configure the VM to collect diagnostics data that can be used to monitor the health of your application.
 
 For Linux VMs, Azure supports cloud-init across most Linux distributions that support it and works with all the major automation tooling like Ansible, Chef, SaltStack, and Puppet.
+<br>
 
+![alt text](images/provision_vm_02.png)
 #### Availability zones
 * A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
 * Azure services that support Availability Zones fall into two categories:
