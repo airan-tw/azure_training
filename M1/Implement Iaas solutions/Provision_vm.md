@@ -122,43 +122,37 @@ az vm create \
     --public-ip-sku Standard
 ```
 
-It takes a few minutes to create the VM and supporting resources. The following example output shows the VM create operation was successful.
-
-
-```output
-{
-  "fqdns": "",
-  "id": "/subscriptions/<guid>/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
-  "location": "eastus",
-  "macAddress": "00-0D-3A-23-9A-49",
-  "powerState": "VM running",
-  "privateIpAddress": "10.0.0.4",
-  "publicIpAddress": "52.174.34.95",
-  "resourceGroup": "myResourceGroup"
-}
-```
-
-Note your own `publicIpAddress` in the output from your VM. This address is used to access the VM in the next steps.
+It will take a few minutes for the operation to complete. When it is finished note the `publicIpAddress` in the output, you'll use it in the next step.
+<br> 
 
 ## Install web server
 
-To see your VM in action, install the IIS web server.
+1. By default, only SSH connections are opened when you create a Linux VM in Azure. Use `az vm open-port` to open TCP port 80 for use with the NGINX web server:
 
 ```azurecli-interactive
-az vm run-command invoke -g MyResourceGroup -n MyVm --command-id RunPowerShellScript --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
+az vm open-port --port 80 \
+--resource-group az204-vm-rg \
+--name az204vm
 ```
 
-## Open port 80 for web traffic
-
-By default, only RDP connections are opened when you create a Windows VM in Azure. Use [az vm open-port](/cli/azure/vm) to open TCP port 80 for use with the IIS web server:
+2. Connect to your VM by using SSH. Replace `<publicIPAddress>` in the example with the public IP address of your VM as noted in the previous output:
 
 ```azurecli-interactive
-az vm open-port --port 80 --resource-group myResourceGroup --name myVM
+ssh azureuser@<publicIPAddress>
 ```
+
+3. To see your VM in action, install the NGINX web server. Update your package sources and then install the latest NGINX package.
+
+```azurecli-interactive
+sudo apt-get -y update
+sudo apt-get -y install nginx
+```
+
+4. When done type `exit` to leave the SSH session.
 
 ## View the web server in action
 
-With IIS installed and port 80 now open on your VM from the Internet, use a web browser of your choice to view the default IIS welcome page. Use the public IP address of your VM obtained in a previous step. The following example shows the default IIS web site:
+Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
 
 ![IIS default site](./media/quick-create-powershell/default-iis-website.png)
 
