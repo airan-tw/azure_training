@@ -5,6 +5,6 @@ This module instructs students on how to use create VMs and container images to 
 ## Modules in this learning path:
 
 * [Provision virtual machines in Azure](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/Provision_vm.md)
-* Create and deploy Azure Resource Manager templates
+* [Create and deploy Azure Resource Manager templates](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/Create_arm.md)
 * Manage container images in Azure Container Registry
 * Run container images in Azure Container Instances
