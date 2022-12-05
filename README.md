@@ -28,11 +28,10 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 ### [Implement IaaS solutions](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/README.md)
 
-  * Provision VMs
-  * Create ARM Templates
-  * Create container images for solutions
-  * Publish an image to the Azure Container Registry
-  * Run containers by using Azure Container Instance
+  * Provision virtual machines in Azure
+  * Create and deploy Azure Resource Manager templates
+  * Manage container images in Azure Container Registry
+  * Run container images in Azure Container Instances
 
 ### [Create Azure App Service Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/README.md)
 
