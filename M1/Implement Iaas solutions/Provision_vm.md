@@ -90,32 +90,36 @@ In this exercise you'll create a Linux virtual machine by performing the followi
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
    
 
-To open the Cloud Shell, just select **Try it** from the upper right corner of a code block. You can also launch Cloud Shell in a separate browser tab by going to [https://shell.azure.com/bash](https://shell.azure.com/bash). Select **Copy** to copy the blocks of code, paste it into the Cloud Shell, and press **Enter** to run it.
+# Login to Azure and start the Cloud Shell
+1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
-## Create a resource group
+![alt text](images/provision_vm_07.png)
 
-Create a resource group with the [az group create](/cli/azure/group) command. An Azure resource group is a logical container into which Azure resources are deployed and managed. The following example creates a resource group named *myResourceGroup* in the *eastus* location:
+2. After the shell opens be sure to select the Bash environment.
+
+![alt text](images/provision_vm_08.png)
+
+
+## Create a resource group and virtual machine
+
+1. Create a resource group with the `az group create` command. The command below creates a resource group named az204-vm-rg. 
+
 
 ```azurecli-interactive
-az group create --name myResourceGroup --location eastus
+az group create --name az204-vm-rg --location --location eastus
 ```
 
+2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
 ## Create virtual machine
-
-Create a VM with [az vm create](/cli/azure/vm). The following example creates a VM named *myVM*. This example uses *azureuser* for an administrative user name. 
-
-You will need to supply a password that meets the [password requirements for Azure VMs](./faq.yml#what-are-the-password-requirements-when-creating-a-vm-
-). 
-
-Using the example below, you will be prompted to enter a password at the command line. You could also add the the `--admin-password` parameter with a value for your password. The user name and password will be used later, when you connect to the VM.
 
 ```azurecli-interactive
 az vm create \
-    --resource-group myResourceGroup \
-    --name myVM \
-    --image Win2022AzureEditionCore \
-    --public-ip-sku Standard \
-    --admin-username azureuser 
+    --resource-group az204-vm-rg \
+    --name az204vm \
+    --image UbuntuLTS \
+    --generate-ssh-keys \
+    --admin-username azureuser \
+    --public-ip-sku Standard
 ```
 
 It takes a few minutes to create the VM and supporting resources. The following example output shows the VM create operation was successful.
