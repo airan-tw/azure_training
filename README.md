@@ -28,7 +28,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 ### [Implement IaaS solutions](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/README.md)
 
-  * [Provision VMs](#provision-vms)
+  * Provision VMs
   * Create ARM Templates
   * Create container images for solutions
   * Publish an image to the Azure Container Registry
