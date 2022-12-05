@@ -22,8 +22,7 @@
 
     The following screenshot displays the configured settings on the **Create a resource group** blade.
 
-    ![Create a resource group blade](/media/l05_create_a_resource_group.png)
-    ![alt text](images/l05_create_a_resource_group.png)
+  ![alt text](images/l05_create_a_resource_group.png)
 
 1.  On the **Review + create** tab, review the options that you selected during the previous steps.
 
