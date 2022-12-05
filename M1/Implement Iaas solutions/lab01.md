@@ -139,6 +139,6 @@
 1.  Close the **Cloud Shell** pane in the portal.
 <br>
 
-#### Review
+### Review
 
 In this exercise, you used Cloud Shell to create a VM as part of an automated script.
