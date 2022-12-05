@@ -36,7 +36,7 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 <br>
 <br> 
 
-![alt text](../images/implement iaas solution/provision_vm_02.png)
+![alt text](../images/provision_vm_02.png)
 #### Availability zones
 * A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
 * Azure services that support Availability Zones fall into two categories:
