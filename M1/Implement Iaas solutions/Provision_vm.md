@@ -106,7 +106,7 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 
 
 ```azurecli-interactive
-az group create --name az204-vm-rg --location --location eastus
+az group create --name az204-vm-rg --location eastus
 ```
 
 2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
