@@ -48,6 +48,7 @@ Windows VMs have extensions which give your VM additional capabilities through p
 
 For Linux VMs, Azure supports cloud-init across most Linux distributions that support it and works with all the major automation tooling like Ansible, Chef, SaltStack, and Puppet.
 <br>
+<br> 
 
 ![alt text](images/provision_vm_02.png)
 #### Availability zones
@@ -67,3 +68,21 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 * Define a front-end IP configuration that contains one or more public IP addresses.
 * Virtual machines connect to a load balancer using their virtual network interface card (NIC).
 * Define load balancer rules for specific ports and protocols that map to your VMs to control traffic flow
+<br>
+<br>
+
+![alt text](images/provision_vm_03.png)
+### What is a fault domain?
+A fault domain is a logical group of hardware in Azure that shares a common power source and network switch. You can think of it as a rack within an on-premises datacenter. The first two VMs in an availability set will be provisioned into two different racks so that if the network or the power failed in a rack, only one VM would be affected. Fault domains are also defined for managed disks attached to VMs.
+
+![alt text](images/provision_vm_04.png)
+Each virtual machine in your availability set is assigned an update domain and a fault domain by the underlying Azure platform.
+
+For a given availability set, five non-user-configurable update domains are assigned by to indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.
+
+![alt text](images/provision_vm_05.png)
+### What if my size needs change?
+Azure allows you to change the VM size when the existing size no longer meets your needs. You can resize the VM - as long as your current hardware configuration is allowed in the new size. This provides a fully agile and elastic approach to VM management.
+If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
+
+**Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
