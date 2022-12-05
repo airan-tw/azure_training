@@ -8,6 +8,7 @@ This module instructs students on how to use create VMs and container images to 
 
 Azure Virtual Machine is a Scalable Computing resource that host the Operating system like macOS, Linux, and Windows. you can access Virtual machines within seconds for deployment or development of your applications.
 
+![alt text](images/M1/provision_vm_01.png)
 #### Azure virtual machines can be used in various ways. Some examples are:
 
 * **Development and test** – Azure VMs offer a quick and easy way to create a computer with specific configurations required to code and test an application.
