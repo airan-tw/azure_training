@@ -32,7 +32,7 @@
 
 #### Task 3: Open Azure Cloud Shell
 
-1.  In the Azure portal, select the **Cloud Shell** icon ![Cloud Shell icon](./media/az204_lab_CloudShell.png) to open a new PowerShell session. If Cloud Shell defaults to a PowerShell session, select **PowerShell**, and then in the drop-down menu, select **Bash**.
+1.  In the Azure portal, select the **Cloud Shell** icon ![alt text](images/az204_lab_CloudShell.png) to open a new PowerShell session. If Cloud Shell defaults to a PowerShell session, select **PowerShell**, and then in the drop-down menu, select **Bash**.
 
     > **Note**: The **Cloud Shell** icon is represented by a greater than sign (\>) and underscore character (\_).
 
@@ -137,3 +137,8 @@
     ```
 
 1.  Close the **Cloud Shell** pane in the portal.
+<br>
+
+#### Review
+
+In this exercise, you used Cloud Shell to create a VM as part of an automated script.
