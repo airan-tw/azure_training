@@ -72,3 +72,103 @@ Azure allows you to change the VM size when the existing size no longer meets yo
 If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
 
 **Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
+
+<br>
+
+![alt text](images/provision_vm_06.png)
+# Exercise: Create a virtual machine by using the Azure CLI
+
+In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
+  * Create a resource group and a virtual machine
+  * Install a web server
+  * View the web server in action
+  * Clean up resources
+
+
+# Prerequisites
+
+  * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
+   
+
+To open the Cloud Shell, just select **Try it** from the upper right corner of a code block. You can also launch Cloud Shell in a separate browser tab by going to [https://shell.azure.com/bash](https://shell.azure.com/bash). Select **Copy** to copy the blocks of code, paste it into the Cloud Shell, and press **Enter** to run it.
+
+## Create a resource group
+
+Create a resource group with the [az group create](/cli/azure/group) command. An Azure resource group is a logical container into which Azure resources are deployed and managed. The following example creates a resource group named *myResourceGroup* in the *eastus* location:
+
+```azurecli-interactive
+az group create --name myResourceGroup --location eastus
+```
+
+## Create virtual machine
+
+Create a VM with [az vm create](/cli/azure/vm). The following example creates a VM named *myVM*. This example uses *azureuser* for an administrative user name. 
+
+You will need to supply a password that meets the [password requirements for Azure VMs](./faq.yml#what-are-the-password-requirements-when-creating-a-vm-
+). 
+
+Using the example below, you will be prompted to enter a password at the command line. You could also add the the `--admin-password` parameter with a value for your password. The user name and password will be used later, when you connect to the VM.
+
+```azurecli-interactive
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image Win2022AzureEditionCore \
+    --public-ip-sku Standard \
+    --admin-username azureuser 
+```
+
+It takes a few minutes to create the VM and supporting resources. The following example output shows the VM create operation was successful.
+
+
+```output
+{
+  "fqdns": "",
+  "id": "/subscriptions/<guid>/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
+  "location": "eastus",
+  "macAddress": "00-0D-3A-23-9A-49",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "52.174.34.95",
+  "resourceGroup": "myResourceGroup"
+}
+```
+
+Note your own `publicIpAddress` in the output from your VM. This address is used to access the VM in the next steps.
+
+## Install web server
+
+To see your VM in action, install the IIS web server.
+
+```azurecli-interactive
+az vm run-command invoke -g MyResourceGroup -n MyVm --command-id RunPowerShellScript --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
+```
+
+## Open port 80 for web traffic
+
+By default, only RDP connections are opened when you create a Windows VM in Azure. Use [az vm open-port](/cli/azure/vm) to open TCP port 80 for use with the IIS web server:
+
+```azurecli-interactive
+az vm open-port --port 80 --resource-group myResourceGroup --name myVM
+```
+
+## View the web server in action
+
+With IIS installed and port 80 now open on your VM from the Internet, use a web browser of your choice to view the default IIS welcome page. Use the public IP address of your VM obtained in a previous step. The following example shows the default IIS web site:
+
+![IIS default site](./media/quick-create-powershell/default-iis-website.png)
+
+## Clean up resources
+
+When no longer needed, you can use the [az group delete](/cli/azure/group) command to remove the resource group, VM, and all related resources:
+
+```azurecli-interactive
+az group delete --name myResourceGroup
+```
+
+## Next steps
+
+In this quickstart, you deployed a simple virtual machine, open a network port for web traffic, and installed a basic web server. To learn more about Azure virtual machines, continue to the tutorial for Windows VMs.
+
+> [!div class="nextstepaction"]
+> [Azure Windows virtual machine tutorials](./tutorial-manage-vm.md)
