@@ -217,7 +217,7 @@ This approach means you can safely share templates that meet your organization's
 ---
 <br>
 
-# Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
+## Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
 
 ![alt text](images/create_arm_09.png)
 
@@ -231,14 +231,14 @@ In this exercise you will learn how to use Visual Studio Code, and the Azure Res
  * Clean up resources
 
 
-## Prerequisites
+### Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
   * [Visual Studio Code](https://code.visualstudio.com/) with the [Azure Resource Manager Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) installed.
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed locally
    
 
-## Create an Azure Resource Manager template
+### Create an Azure Resource Manager template
 
 1. Create and open a new file named `azuredeploy.json` with Visual Studio Code.
 
@@ -260,7 +260,7 @@ Your file should contain something similar to the example below.
 }
 ```
 
-## Add an Azure resource to the template
+### Add an Azure resource to the template
 
 In this section you will add a snippet to support the creation of an Azure storage account to the template.
 
@@ -289,7 +289,7 @@ The `resources` block should look similar to the example below.
 }],
 ```
 
-## Add parameters to the template
+### Add parameters to the template
 
 Now you will create and use a parameter to specify the storage account name.
 
@@ -345,7 +345,7 @@ The resources block of the template should now be similar to the example below.
 }],
 ```
 
-## Create a parameter file
+### Create a parameter file
 
 An Azure Resource Manager template parameter file allows you to store environment-specific parameter values and pass these values in as a group at deployment time. This is useful if you want to have values specific to a test or production environment, for example. The extension makes it easy to create a parameter file that is mapped to your existing template. Follow the steps below to create a parameter file.
 
@@ -371,7 +371,7 @@ An Azure Resource Manager template parameter file allows you to store environmen
 }
 ```
 
-## Deploy the template
+### Deploy the template
 
 It's time to deploy the template. Follow the steps below, in the VS Code terminal, to connect to Azure and deploy the new storage account resource.
 
@@ -399,11 +399,12 @@ az  deployment group create --resource-group az204-arm-rg --template-file azured
 az storage account show --resource-group az204-arm-rg --name <myStorageAccount>
 ```
 
-## Clean up resources
+### Clean up resources
 
 When the Azure resources are no longer needed use the Azure CLI command below to delete the resource group.
 
 ```azurecli-interactive
 az group delete --name az204-arm-rg --no-wait
 ```
+
 > **Note**: This operation takes on average 5 - 10 minutes
