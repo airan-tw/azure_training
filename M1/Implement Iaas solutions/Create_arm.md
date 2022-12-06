@@ -163,9 +163,9 @@ Place your cursor in the parameters block, add a carriage return, type `"`, and 
 
 Make the following changes to the new parameter you just added:
 
-   1. Update the name of the parameter to `storageAccountName` and the description to `Storage Account Name`.
+1. Update the name of the parameter to `storageAccountName` and the description to `Storage Account Name`.
 
-   2. Azure storage account names have a minimum length of 3 characters and a maximum of 24. Add both `minLength` and `maxLength` to the parameter and provide appropriate values.
+2. Azure storage account names have a minimum length of 3 characters and a maximum of 24. Add both `minLength` and `maxLength` to the parameter and provide appropriate values.
 
 The `parameters` block should look similar to the example below.
 
@@ -184,11 +184,11 @@ The `parameters` block should look similar to the example below.
 
 Follow the steps below to update the name property of the storage resource to use the parameter.
 
-   1. In the `resources` block, delete the current default name which is `storageaccount1` in the examples above. Leave the quotes (`""`) around the name in place.
+1. In the `resources` block, delete the current default name which is `storageaccount1` in the examples above. Leave the quotes (`""`) around the name in place.
 
-   2. Enter a square bracket `[`, which produces a list of Azure Resource Manager template functions. Select parameters from the list.
+2. Enter a square bracket `[`, which produces a list of Azure Resource Manager template functions. Select parameters from the list.
 
-   3. Add `()` at the end of parameters and select storageAccountName from the pop-up. If the list of parameters does not show up automatically you can enter a single quote `'` inside of the round brackets to display the list.
+3. Add `()` at the end of parameters and select storageAccountName from the pop-up. If the list of parameters does not show up automatically you can enter a single quote `'` inside of the round brackets to display the list.
 
 The resources block of the template should now be similar to the example below.
 
@@ -213,16 +213,61 @@ The resources block of the template should now be similar to the example below.
 
 An Azure Resource Manager template parameter file allows you to store environment-specific parameter values and pass these values in as a group at deployment time. This is useful if you want to have values specific to a test or production environment, for example. The extension makes it easy to create a parameter file that is mapped to your existing template. Follow the steps below to create a parameter file.
 
-   1. With the azuredeploy.json file in focus open the Command Palette by selecting View > Command Palette from the menu bar.
-   2. In the Command Palette enter "parameter" in the search bar and select Azure Resource Manager Tools:Select/Create Parameter File.
+1. With the azuredeploy.json file in focus open the Command Palette by selecting View > Command Palette from the menu bar.
 
-![alt text](images/create_arm_08.png)
+2. In the Command Palette enter "parameter" in the search bar and select Azure Resource Manager Tools:Select/Create Parameter File.
+
+   ![alt text](images/create_arm_08.png)
+
+3. A new dialog box will open at the top of the editor. From those options select New, then select All Parameters. Accept the default name for the new file.
+
+4. Edit the `value` parameter and type in a name that meets the naming requirements. The azuredeploy.parameters.json file should be similar to the example below.
+
+```azurecli-interactive
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "value": "az204storageacctarm" 
+        }
+    }
+}
+```
+
+## Deploy the template
+
+It's time to deploy the template. Follow the steps below, in the VS Code terminal, to connect to Azure and deploy the new storage account resource.
+
+1. Connect to Azure by using the `az login` command.
+
+```azurecli-interactive
+az login
+```
+   
+2. Create a resource group to contain the new resource. 
+ 
+```azurecli-interactive
+az group create --name az204-arm-rg --location eastus
+```
+
+3. Use the `az deployment group create` command to deploy your template. The deployment will take a few minutes to complete, progress will be shown in the terminal.
+ 
+```azurecli-interactive
+az  deployment group create --resource-group az204-arm-rg --template-file azuredeploy.json --parameters azuredeploy.parameters.json
+```
+
+4. You can verify the deployment by running the command below. Replace `<myStorageAccount>` with the name you used earlier.
+ 
+```azurecli-interactive
+az storage account show --resource-group az204-arm-rg --name <myStorageAccount>
+```
 
 ## Clean up resources
 
-You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
+When the Azure resources are no longer needed use the Azure CLI command below to delete the resource group.
 
 ```azurecli-interactive
-az group delete --name az204-vm-rg --no-wait
+az group delete --name az204-arm-rg --no-wait
 ```
 > **Note**: This operation takes on average 5 - 10 minutes
