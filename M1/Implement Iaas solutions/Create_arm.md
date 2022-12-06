@@ -42,6 +42,7 @@ The template has the following sections:
    * [Outputs](#outputs) - Return values from the deployed resources.
 
 <a id="parameters" />
+
 ### Parameters
 
 Parameters in a templates define the configuration. These parameters are used in run time or during deployment. In a parameter, we need to define the name, type, values and properties. We can also set some allowed values and default values to the parameters, so when a value is not passed during deployment, then the default or allowed values will be used. Below is an example of parameters that defines the type and the default value of username and password for the VM (Virtual Machine).
@@ -66,7 +67,9 @@ Parameters in a templates define the configuration. These parameters are used in
 ```
 
 <a id="variables" />
+
 ### Variables
+
 Variables define values used throughout the template. In simple words, you can define a short name for a specific value that can be used anywhere in the template. Variables also become an advantage when you want to update all the values and reference in a template. Then you can update the variable and its value only.
 
 ```azurecli-interactive
@@ -81,7 +84,9 @@ Variables define values used throughout the template. In simple words, you can d
 ```
 
 <a id="functions" />
+
 ### Functions
+
 In a template, the function contains the steps and procedures to be followed. It is just like a variable that defines the steps performed when called in a templates. The below example of the function defines the unique name for the resources.
 
 ```azurecli-interactive
@@ -105,6 +110,7 @@ In a template, the function contains the steps and procedures to be followed. It
 ```
 
 <a id="resources" />
+
 ### Resources
 
 All the azure resources are defined here that makes the deployment. For creating a resource, we need to set up the type, name, location, version and properties of the resource that needs to be deployed. We can also use the variables and parameters here that are defined in the ‘variables’ section. Below is the example of declaring the resources in a templates.
@@ -128,7 +134,9 @@ All the azure resources are defined here that makes the deployment. For creating
 ```
 
 <a id="outputs" />
+
 ### Outputs
+
 Output defines the result that you want to see when a template runs. In simple words, the final words that you want to see when a template is successfully deployed. In the below example, the hostname with a value fetched from the public IP address name.
 
 ```azurecli-interactive
@@ -139,6 +147,8 @@ Output defines the result that you want to see when a template runs. In simple w
  }
 }
 ```
+
+
 ### Deploy multi-tiered solutions
 
 With Resource Manager, you can create a template (in JSON format) that defines the infrastructure and configuration of your Azure solution. By using a template, you can repeatedly deploy your solution throughout its lifecycle and have confidence your resources are deployed in a consistent state.
