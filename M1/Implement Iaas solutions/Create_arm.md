@@ -86,19 +86,25 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 ---
 
-# Exercise: Create a virtual machine by using the Azure CLI
+# Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
 ![alt text](images/provision_vm_06.png)
 
-In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
-  * Create a resource group and a virtual machine
-  * Install a web server
-  * View the web server in action
-  * Clean up resources
+In this exercise you will learn how to use Visual Studio Code, and the Azure Resource Manager Tools extension, to create and edit Azure Resource Manager templates.
+
+ * Create an Azure Resource Manager template
+ * Add an Azure resource to the template
+ * Add parameters to the template
+ * Create a parameter file
+ * Deploy the template
+ * Clean up resources
 
 
 # Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
+  * [Visual Studio Code](https://code.visualstudio.com/) with the [Azure Resource Manager Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) installed.
+  * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed locally
+
    
 
 # Login to Azure and start the Cloud Shell
@@ -111,9 +117,13 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 ![alt text](images/provision_vm_08.png)
 
 
-## Create a resource group and virtual machine
+## Create an Azure Resource Manager template
 
-1. Create a resource group with the `az group create` command. The command below creates a resource group named az204-vm-rg. 
+1. Create and open a new file named `azuredeploy.json` with Visual Studio Code.
+
+2. Enter **arm** in the azuredeploy.json file and select **arm!** from the autocomplete options. This will insert a snippet with the basic building blocks for an Azure resource group deployment.
+
+
 
 
 ```azurecli-interactive
