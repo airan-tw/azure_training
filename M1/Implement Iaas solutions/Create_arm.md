@@ -31,16 +31,114 @@ Within your template, you can write template expressions that extend the capabil
 
 The template has the following sections:
 
-   * [Parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) - Provide values during deployment that allow the same template to be used with different environments.
+   * [Parameters](#parameters) - Provide values during deployment that allow the same template to be used with different environments.
 
-   * [Variables](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/variables) - Define values that are reused in your templates. They can be constructed from parameter values.
+   * [Variables](#variables) - Define values that are reused in your templates. They can be constructed from parameter values.
 
-   * [User-defined functions](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/user-defined-functions) - Create customized functions that simplify your template.
+   * [User-defined functions](#functions) - Create customized functions that simplify your template.
 
-   * [Resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-declaration) - Specify the resources to deploy.
+   * [Resources](#resources) - Specify the resources to deploy.
 
-   * [Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/outputs) - Return values from the deployed resources.
+   * [Outputs](#outputs) - Return values from the deployed resources.
 
+<a id="parameters" />
+### Parameters
+
+Parameters in a templates define the configuration. These parameters are used in run time or during deployment. In a parameter, we need to define the name, type, values and properties. We can also set some allowed values and default values to the parameters, so when a value is not passed during deployment, then the default or allowed values will be used. Below is an example of parameters that defines the type and the default value of username and password for the VM (Virtual Machine).
+
+```azurecli-interactive
+"parameters": {
+ "adminUsername": {
+  "type": "string",
+  "defaultValue": "Admin",
+  "metadata": {
+   "description": "Username for the Virtual Machine."
+    }
+  },
+  "adminPassword": {
+   "type": "securestring",
+   "defaultValue": "12345",
+   "metadata": {
+    "description": "Password for the Virtual Machine."
+    }
+  }
+}
+```
+
+<a id="variables" />
+### Variables
+Variables define values used throughout the template. In simple words, you can define a short name for a specific value that can be used anywhere in the template. Variables also become an advantage when you want to update all the values and reference in a template. Then you can update the variable and its value only.
+
+```azurecli-interactive
+"variables": {
+ "nicName": "myVMNic",
+ "addressPrefix": "10.0.0.0/16",
+ "subnetName": "Subnet",
+ "subnetPrefix": "10.0.0.0/24",
+ "publicIPAddressName": "myPublicIP",
+ "virtualNetworkName": "MyVNet"
+}
+```
+
+<a id="functions" />
+### Functions
+In a template, the function contains the steps and procedures to be followed. It is just like a variable that defines the steps performed when called in a templates. The below example of the function defines the unique name for the resources.
+
+```azurecli-interactive
+"functions": [
+ {
+  "namespace": "contoso",
+  "members": {
+   "uniqueName": {
+    "parameters": [
+      {
+       "name": "namePrefix",
+       "type": "string"
+      }
+    ],
+    "output": {
+     "type": "string",
+     "value": "[concat(toLower(parameters('namePrefix')), uniqueString(resourceGroup().id))]"
+         }
+       }
+     }}],
+```
+
+<a id="resources" />
+### Resources
+
+All the azure resources are defined here that makes the deployment. For creating a resource, we need to set up the type, name, location, version and properties of the resource that needs to be deployed. We can also use the variables and parameters here that are defined in the ‘variables’ section. Below is the example of declaring the resources in a templates.
+
+
+```azurecli-interactive
+"resources": [
+ {
+  "type": "Microsoft.Network/publicIPAddresses",
+  "name": "[variables('publicIPAddressName')]",
+  "location": "[parameters('location')]",
+  "apiVersion": "2018-08-01",
+  "properties": {
+    "publicIPAllocationMethod": "Dynamic",
+    "dnsSettings": {
+    "domainNameLabel": "[parameters('dnsLabelPrefix')]"
+    }
+  }
+}
+],
+```
+
+<a id="outputs" />
+### Outputs
+Output defines the result that you want to see when a template runs. In simple words, the final words that you want to see when a template is successfully deployed. In the below example, the hostname with a value fetched from the public IP address name.
+
+```azurecli-interactive
+"outputs": {
+ "hostname": {
+  "type": "string",
+  "value": "[reference(variables('publicIPAddressName')).dnsSettings.fqdn]"
+ }
+}
+```
 ### Deploy multi-tiered solutions
 
 With Resource Manager, you can create a template (in JSON format) that defines the infrastructure and configuration of your Azure solution. By using a template, you can repeatedly deploy your solution throughout its lifecycle and have confidence your resources are deployed in a consistent state.
@@ -79,45 +177,41 @@ REQUEST BODY
 }
 ```
 
+Notice that the apiVersion you set in the template for the resource is used as the API version for the REST operation. You can repeatedly deploy the template and have confidence it will continue to work. By using the same API version, you don't have to worry about breaking changes that might be introduced in later versions.
 
-#### Availability sets
-* Composed of two additional groupings that protect against hardware failures and allow updates to safely be applied - fault domains (FDs) and update domains (UDs).
+You can deploy a template using any of the following options:
 
-#### VM scale sets
-* Visit https://docs.microsoft.com/azure/virtual-machine-scale-sets/overview?context=/azure/virtual-machines/context/context
+   * Azure portal
+   * Azure CLI
+   * PowerShell
+   * REST API
+   * Button in GitHub repository
+   * Azure Cloud Shell
 
-#### Load balancer
-* Combine the Azure Load Balancer with an availability zone or availability set to get the most application resiliency.
-* Define a front-end IP configuration that contains one or more public IP addresses.
-* Virtual machines connect to a load balancer using their virtual network interface card (NIC).
-* Define load balancer rules for specific ports and protocols that map to your VMs to control traffic flow
-<br>
-<br>
+### Defining multi-tiered templates
+How you define templates and resource groups is entirely up to you and how you want to manage your solution. For example, you can deploy a three tier application through a single template to a single resource group.
 
-![alt text](images/provision_vm_03.png)
-### What is a fault domain?
-A fault domain is a logical group of hardware in Azure that shares a common power source and network switch. You can think of it as a rack within an on-premises datacenter. The first two VMs in an availability set will be provisioned into two different racks so that if the network or the power failed in a rack, only one VM would be affected. Fault domains are also defined for managed disks attached to VMs.
-<br>
-<br> 
+![alt text](images/create_arm_03.png)
 
-![alt text](images/provision_vm_04.png)
-Each virtual machine in your availability set is assigned an update domain and a fault domain by the underlying Azure platform.
+But, you don't have to define your entire infrastructure in a single template. Often, it makes sense to divide your deployment requirements into a set of targeted, purpose-specific templates. You can easily reuse these templates for different solutions. To deploy a particular solution, you create a master template that links all the required templates. The following image shows how to deploy a three tier solution through a parent template that includes three nested templates.
 
-For a given availability set, five non-user-configurable update domains are assigned by to indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.
-<br>
-<br> 
+![alt text](images/create_arm_04.png)
 
-![alt text](images/provision_vm_05.png)
-### What if my size needs change?
-Azure allows you to change the VM size when the existing size no longer meets your needs. You can resize the VM - as long as your current hardware configuration is allowed in the new size. This provides a fully agile and elastic approach to VM management.
-If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
+If you envision your tiers having separate lifecycles, you can deploy your three tiers to separate resource groups. The resources can still be linked to resources in other resource groups.
 
-**Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
+Azure Resource Manager analyzes dependencies to ensure resources are created in the correct order. If one resource relies on a value from another resource (such as a virtual machine needing a storage account for disks), you set a dependency. For more information, see Defining dependencies in Azure Resource Manager templates.
 
-<br>
-<br> 
+You can also use the template for updates to the infrastructure. For example, you can add a resource to your solution and add configuration rules for the resources that are already deployed. If the template specifies creating a resource but that resource already exists, Azure Resource Manager performs an update instead of creating a new asset. Azure Resource Manager updates the existing asset to the same state as it would be as new.
 
+Resource Manager provides extensions for scenarios when you need additional operations such as installing particular software that isn't included in the setup. If you're already using a configuration management service, like DSC, Chef or Puppet, you can continue working with that service by using extensions.
 
+Finally, the template becomes part of the source code for your app. You can check it in to your source code repository and update it as your app evolves. You can edit the template through Visual Studio.
+
+### Share templates
+
+After creating your template, you may wish to share it with other users in your organization. [Template specs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-specs) enable you to store a template as a resource type. You use role-based access control to manage access to the template spec. Users with read access to the template spec can deploy it, but not change the template.
+
+This approach means you can safely share templates that meet your organization's standards.
 
 # Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
 
