@@ -98,12 +98,12 @@ In this exercise you'll create a Linux virtual machine by performing the followi
   * Clean up resources
 
 
-# Prerequisites
+## Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
    
 
-# Login to Azure and start the Cloud Shell
+## Login to Azure and start the Cloud Shell
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
 ![alt text](images/provision_vm_05.png)
@@ -123,6 +123,7 @@ az group create --name az204-vm-rg --location eastus
 ```
 
 2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
+3. 
 ## Create virtual machine
 
 ```azurecli-interactive
