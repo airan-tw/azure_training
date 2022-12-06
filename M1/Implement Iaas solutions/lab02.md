@@ -1,3 +1,7 @@
+## Lab scenario
+
+Your organization is seeking a way to 
+
 ### Exercise 2: Create a Docker container image and deploy it to Azure Container Registry
 
 #### Task 1: Open the Cloud Shell and editor
