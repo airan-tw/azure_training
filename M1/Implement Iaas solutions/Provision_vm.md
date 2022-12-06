@@ -75,7 +75,7 @@ For a given availability set, five non-user-configurable update domains are assi
 <br>
 <br> 
 
-![alt text](images/provision_vm_05.png)
+![alt text](images/provision_vm_03.png)
 ### What if my size needs change?
 Azure allows you to change the VM size when the existing size no longer meets your needs. You can resize the VM - as long as your current hardware configuration is allowed in the new size. This provides a fully agile and elastic approach to VM management.
 If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
@@ -88,7 +88,7 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 
 # Exercise: Create a virtual machine by using the Azure CLI
-![alt text](images/provision_vm_06.png)
+![alt text](images/provision_vm_04.png)
 
 In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
   * Create a resource group and a virtual machine
@@ -105,11 +105,11 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 # Login to Azure and start the Cloud Shell
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
-![alt text](images/provision_vm_07.png)
+![alt text](images/provision_vm_05.png)
 
 2. After the shell opens be sure to select the Bash environment.
 
-![alt text](images/provision_vm_08.png)
+![alt text](images/provision_vm_06.png)
 
 
 ## Create a resource group and virtual machine
