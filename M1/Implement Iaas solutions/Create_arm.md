@@ -31,17 +31,16 @@ Within your template, you can write template expressions that extend the capabil
 
 The template has the following sections:
 
-   * [Parameters](#parameters) - Provide values during deployment that allow the same template to be used with different environments.
+   * Parameters - Provide values during deployment that allow the same template to be used with different environments.
 
-   * [Variables](#variables) - Define values that are reused in your templates. They can be constructed from parameter values.
+   * Variables - Define values that are reused in your templates. They can be constructed from parameter values.
 
-   * [User-defined functions](#functions) - Create customized functions that simplify your template.
+   * User-defined functions - Create customized functions that simplify your template.
 
-   * [Resources](#resources) - Specify the resources to deploy.
+   * Resources- Specify the resources to deploy.
 
-   * [Outputs](#outputs) - Return values from the deployed resources.
+   * Outputs - Return values from the deployed resources.
 
-<a id="parameters" />
 
 ### Parameters
 
@@ -66,8 +65,6 @@ Parameters in a templates define the configuration. These parameters are used in
 }
 ```
 
-<a id="variables" />
-
 ### Variables
 
 Variables define values used throughout the template. In simple words, you can define a short name for a specific value that can be used anywhere in the template. Variables also become an advantage when you want to update all the values and reference in a template. Then you can update the variable and its value only.
@@ -82,8 +79,6 @@ Variables define values used throughout the template. In simple words, you can d
  "virtualNetworkName": "MyVNet"
 }
 ```
-
-<a id="functions" />
 
 ### Functions
 
@@ -109,8 +104,6 @@ In a template, the function contains the steps and procedures to be followed. It
      }}],
 ```
 
-<a id="resources" />
-
 ### Resources
 
 All the azure resources are defined here that makes the deployment. For creating a resource, we need to set up the type, name, location, version and properties of the resource that needs to be deployed. We can also use the variables and parameters here that are defined in the ‘variables’ section. Below is the example of declaring the resources in a templates.
@@ -132,8 +125,6 @@ All the azure resources are defined here that makes the deployment. For creating
 }
 ],
 ```
-
-<a id="outputs" />
 
 ### Outputs
 
