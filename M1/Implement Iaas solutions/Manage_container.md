@@ -88,7 +88,8 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 
 # Exercise: Build and run a container image by using Azure Container Registry Tasks
-![alt text](images/provision_vm_04.png)
+
+![alt text](images/manage_container_01.png)
 
 In this exercise you will use ACR Tasks to perform the following actions:
 
