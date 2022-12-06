@@ -87,8 +87,6 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 
 
----
-
 # Exercise: Create a virtual machine by using the Azure CLI
 ![alt text](images/provision_vm_06.png)
 
