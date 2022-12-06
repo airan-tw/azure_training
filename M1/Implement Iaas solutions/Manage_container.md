@@ -46,8 +46,10 @@ If a regional outage occurs, the registry data may become unavailable and is not
 
 Very high numbers of repositories and tags can impact the performance of your registry. Periodically delete unused repositories, tags, and images as part of your registry maintenance routine. Deleted registry resources like repositories, images, and tags cannot be recovered after deletion.
 
+---
+<br>
 
-# Exercise: Build and run a container image by using Azure Container Registry Tasks
+## Exercise: Build and run a container image by using Azure Container Registry Tasks
 
 ![alt text](images/manage_container_01.png)
 
