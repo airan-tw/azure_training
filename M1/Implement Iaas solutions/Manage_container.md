@@ -46,6 +46,72 @@ If a regional outage occurs, the registry data may become unavailable and is not
 
 Very high numbers of repositories and tags can impact the performance of your registry. Periodically delete unused repositories, tags, and images as part of your registry maintenance routine. Deleted registry resources like repositories, images, and tags cannot be recovered after deletion.
 
+### Build and manage containers with tasks
+ACR Tasks is a suite of features within Azure Container Registry. It provides cloud-based container image building for platforms including Linux, Windows, and Azure Resource Manager, and can automate OS and framework patching for your Docker containers. ACR Tasks enables automated builds triggered by source code updates, updates to a container's base image, or timers.
+
+#### Task scenarios
+ACR Tasks supports several scenarios to build and maintain container images and other artifacts.
+
+   * **Quick task** - Build and push a single container image to a container registry on-demand, in Azure, without needing a local Docker Engine installation. Think `docker build`, `docker push` in the cloud.
+
+   * **Automatically triggered tasks** - Enable one or more triggers to build an image:
+    * Trigger on source code update
+    * Trigger on base image update
+    * Trigger on a schedule
+
+  * **Multi-step task** - Extend the single image build-and-push capability of ACR Tasks with multi-step, multi-container-based workflows.
+
+Each ACR Task has an associated source code context - the location of a set of source files used to build a container image or other artifact. Example contexts include a Git repository or a local filesystem.
+
+### Explore elements of a Dockerfile
+If you want to create a custom container you will need to understand the elements of a Dockerfile. A Dockerfile is a text file that contains the instructions we use to build and run a Docker image. The following aspects of the image are defined:
+
+   * The base or parent image we use to create the new image
+   * Commands to update the base OS and install additional software
+   * Build artifacts to include, such as a developed application
+   * Services to expose, such a storage and network configuration
+   * Command to run when the container is launched
+
+Let's map these aspects to an example Dockerfile. Suppose we're creating a Docker image for an ASP.NET Core website. The Dockerfile may look like the following example.
+
+```azurecli-interactive
+# Step 1: Specify the parent image for the new image
+FROM ubuntu:18.04
+
+# Step 2: Update OS packages and install additional software
+RUN apt -y update &&  apt install -y wget nginx software-properties-common apt-transport-https \
+	&& wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+	&& dpkg -i packages-microsoft-prod.deb \
+	&& add-apt-repository universe \
+	&& apt -y update \
+	&& apt install -y dotnet-sdk-3.0
+
+# Step 3: Configure Nginx environment
+CMD service nginx start
+
+# Step 4: Configure Nginx environment
+COPY ./default /etc/nginx/sites-available/default
+
+# STEP 5: Configure work directory
+WORKDIR /app
+
+# STEP 6: Copy website code to container
+COPY ./website/. .
+
+# STEP 7: Configure network requirements
+EXPOSE 80:8080
+
+# STEP 8: Define the entry point of the process that runs in the container
+ENTRYPOINT ["dotnet", "website.dll"]
+```
+
+We're not going to cover the Dockerfile file specification here or the detail of each command in our above example. However, notice that there are several commands in this file that allow us to manipulate the structure of the image.
+
+Each of these steps creates a cached container image as we build the final container image. These temporary images are layered on top of the previous and presented as single image once all steps complete.
+
+Finally, notice the last step, step 8. The `ENTRYPOINT` in the file indicates which process will execute once we run a container from an image.
+
+
 ---
 <br>
 
@@ -79,7 +145,6 @@ In this exercise you will use ACR Tasks to perform the following actions:
 ## Create an Azure Container Registry
 
 1. Create a resource group for the registry. 
-
 
 ```azurecli-interactive
 az group create --name az204-acr-rg --location --location eastus
