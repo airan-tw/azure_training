@@ -216,6 +216,8 @@ This approach means you can safely share templates that meet your organization's
 
 # Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
 
+![alt text](images/create_arm_09.png)
+
 In this exercise you will learn how to use Visual Studio Code, and the Azure Resource Manager Tools extension, to create and edit Azure Resource Manager templates.
 
  * Create an Azure Resource Manager template
