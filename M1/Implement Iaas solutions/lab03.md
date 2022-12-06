@@ -35,8 +35,8 @@
     | **Public IP address** section | Select **No** |
 
     The following screenshot displays the configured settings on the **Create container instance** blade.
-
-    ![Create container instance blade](./media/l05_create_container_instance.png)
+    
+    ![alt text](images/l05_create_container_instance.png)
 
     > **Note**: Wait for the container instance to be created before you continue with this lab.
 
@@ -65,7 +65,7 @@
 
        The following screenshot displays the configured settings on the **Create container instance** blade.
 
-       ![Create container instance blade](./media/l05_create_container_instance_manual.png)
+        ![alt text](images/l05_create_container_instance_manual.png)
 
 1.  From the **Review + create** tab, review the selected options.
 
