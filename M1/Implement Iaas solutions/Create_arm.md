@@ -214,6 +214,9 @@ After creating your template, you may wish to share it with other users in your 
 
 This approach means you can safely share templates that meet your organization's standards.
 
+---
+<br>
+
 # Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
 
 ![alt text](images/create_arm_09.png)
