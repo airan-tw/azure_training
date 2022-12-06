@@ -65,8 +65,8 @@
 
        The following screenshot displays the configured settings on the **Create container instance** blade.
 
-        ![alt text](images/l05_create_container_instance_manual.png)
-
+     ![alt text](images/l05_create_container_instance_manual.png)
+ 
 1.  From the **Review + create** tab, review the selected options.
 
 1.  Select **Create** to create the container instance by using your specified configuration.  
