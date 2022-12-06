@@ -59,6 +59,7 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 
 ### What is a fault domain?
 A fault domain is a logical group of underlying hardware that share a common power source and network switch, similar to a rack within an on-premises datacenter. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these fault domains. This approach limits the impact of potential physical hardware failures, network outages, or power interruptions.
+
 ![alt text](images/provision_vm_01.png)
 <br>
 <br> 
