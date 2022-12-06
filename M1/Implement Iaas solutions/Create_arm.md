@@ -1,12 +1,13 @@
 
-## Provision Virtual Machines in Azure
+## Create and deploy Azure Resource Manager templates
 ---
 
-### Azure virtual machines
+### ARM Template: Azure Resource Manager Template
 
-Azure Virtual Machine is a Scalable Computing resource that host the Operating system like macOS, Linux, and Windows. you can access Virtual machines within seconds for deployment or development of your applications.
+ARM (Azure Resource Manager) template is a block of code that defines the infrastructure and configuration for your project. These templates use a declarative syntax to let you define your deployment in the form of JSON (JavaScript Object Notation) files. All the resources and their properties are defined in this template. This helps in automating the deployment process in a constant flow.
 
-![alt text](images/provision_vm_01.png)
+![alt text](images/create_arm_01.png)
+
 #### Azure virtual machines can be used in various ways. Some examples are:
 
 * **Development and test** – Azure VMs offer a quick and easy way to create a computer with specific configurations required to code and test an application.
