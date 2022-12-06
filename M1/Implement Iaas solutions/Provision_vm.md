@@ -3,9 +3,8 @@
 
 ### Azure virtual machines
 
-Azure Virtual Machine is a Scalable Computing resource that host the Operating system like macOS, Linux, and Windows. you can access Virtual machines within seconds for deployment or development of your applications.
+An Azure virtual machine gives you the flexibility of virtualization without having to buy and maintain the physical hardware that runs it. However, you still need to maintain the VM by performing tasks, such as configuring, patching, and installing the software that runs on it. This unit gives you information about what you should consider before you create a VM, how you create it, and how you manage it.
 
-![alt text](images/provision_vm_01.png)
 #### Azure virtual machines can be used in various ways. Some examples are:
 
 * **Development and test** – Azure VMs offer a quick and easy way to create a computer with specific configurations required to code and test an application.
@@ -18,11 +17,12 @@ Azure Virtual Machine is a Scalable Computing resource that host the Operating s
 * **VM limits:** Your subscription has default quota limits in place that could impact the deployment of many VMs for your project.
 * **VM image:** You can either use your own image, or you can use one of the images in the Azure Marketplace.
 * **VM disks:** There are two components that make up this area. The type of disks which determines the performance level and the storage account type that contains the disks. Azure provides two types of disks:
-Standard disks: Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
-  * **Premium disks:** Backed by SSD-based, high-performance, low-latency disk. Perfect for VMs running production workload.
-And, there are two options for the disk storage:
-  * **Managed disks:** Managed disks are the newer and recommended disk storage model and they are managed by Azure.
-  * **Unmanaged disks:** With unmanaged disks, you’re responsible for the storage accounts that hold the virtual hard disks (VHDs) that correspond to your VM disks.
+   * **Standard disks:** Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
+    * **Premium disks:** Backed by SSD-based, high-performance, low-latency disk. Perfect for VMs running production workload.
+    
+      And, there are two options for the disk storage:
+       * **Managed disks:** Managed disks are the newer and recommended disk storage model and they are managed by Azure.
+       * **Unmanaged disks:** With unmanaged disks, you’re responsible for the storage accounts that hold the virtual hard disks (VHDs) that correspond to your VM disks.
 
 #### Virtual machine extensions
 
@@ -36,7 +36,6 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 <br>
 <br> 
 
-![alt text](images/provision_vm_02.png)
 #### Availability zones
 * A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
 * Azure services that support Availability Zones fall into two categories:
@@ -57,13 +56,19 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 <br>
 <br>
 
-![alt text](images/provision_vm_03.png)
+
 ### What is a fault domain?
-A fault domain is a logical group of hardware in Azure that shares a common power source and network switch. You can think of it as a rack within an on-premises datacenter. The first two VMs in an availability set will be provisioned into two different racks so that if the network or the power failed in a rack, only one VM would be affected. Fault domains are also defined for managed disks attached to VMs.
+A fault domain is a logical group of underlying hardware that share a common power source and network switch, similar to a rack within an on-premises datacenter. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these fault domains. This approach limits the impact of potential physical hardware failures, network outages, or power interruptions.
+![alt text](images/provision_vm_01.png)
 <br>
 <br> 
 
-![alt text](images/provision_vm_04.png)
+### Update domains
+An update domain is a logical group of underlying hardware that can undergo maintenance or be rebooted at the same time. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these update domains. This approach ensures that at least one instance of your application always remains running as the Azure platform undergoes periodic maintenance. The order of update domains being rebooted may not proceed sequentially during planned maintenance, but only one update domain is rebooted at a time.
+
+![alt text](images/provision_vm_02.png)
+
+
 Each virtual machine in your availability set is assigned an update domain and a fault domain by the underlying Azure platform.
 
 For a given availability set, five non-user-configurable update domains are assigned by to indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.
