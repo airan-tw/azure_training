@@ -1,6 +1,5 @@
 
 ## Provision Virtual Machines in Azure
----
 
 ### Azure virtual machines
 
