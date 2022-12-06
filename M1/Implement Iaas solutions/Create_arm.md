@@ -1,6 +1,5 @@
 
 ## Create and deploy Azure Resource Manager templates
----
 
 ### ARM Template: Azure Resource Manager Template
 
@@ -84,10 +83,7 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 
 
----
-
 # Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
-![alt text](images/provision_vm_06.png)
 
 In this exercise you will learn how to use Visual Studio Code, and the Azure Resource Manager Tools extension, to create and edit Azure Resource Manager templates.
 
@@ -99,23 +95,12 @@ In this exercise you will learn how to use Visual Studio Code, and the Azure Res
  * Clean up resources
 
 
-# Prerequisites
+## Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
   * [Visual Studio Code](https://code.visualstudio.com/) with the [Azure Resource Manager Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) installed.
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed locally
-
    
-
-# Login to Azure and start the Cloud Shell
-1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
-
-![alt text](images/provision_vm_07.png)
-
-2. After the shell opens be sure to select the Bash environment.
-
-![alt text](images/provision_vm_08.png)
-
 
 ## Create an Azure Resource Manager template
 
@@ -123,59 +108,115 @@ In this exercise you will learn how to use Visual Studio Code, and the Azure Res
 
 2. Enter **arm** in the azuredeploy.json file and select **arm!** from the autocomplete options. This will insert a snippet with the basic building blocks for an Azure resource group deployment.
 
+![alt text](images/create_arm_05.png)
+
+Your file should contain something similar to the example below.
+
+```azurecli-interactive
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [],
+    "outputs": {}
+}
+```
+
+## Add an Azure resource to the template
+
+In this section you will add a snippet to support the creation of an Azure storage account to the template.
+
+Place the cursor in the template `resources` block, type in `storage`, and select the **arm-storage** snippet.
+
+![alt text](images/create_arm_06.png)
+
+The `resources` block should look similar to the example below.
 
 
 
 ```azurecli-interactive
-az group create --name az204-vm-rg --location eastus
+"resources": [{
+    "name": "storageaccount1",
+    "type": "Microsoft.Storage/storageAccounts",
+    "apiVersion": "2019-06-01",
+    "tags": {
+        "displayName": "storageaccount1"
+    },
+    "location": "[resourceGroup().location]",
+    "kind": "StorageV2",
+    "sku": {
+        "name": "Premium_LRS",
+        "tier": "Premium"
+    }
+}],
 ```
 
-2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
-## Create virtual machine
+## Add parameters to the template
+
+Now you will create and use a parameter to specify the storage account name.
+
+Place your cursor in the parameters block, add a carriage return, type `"`, and then select the `new-parameter` snippet. This action adds a generic parameter to the template.
+
+![alt text](images/create_arm_07.png)
+
+Make the following changes to the new parameter you just added:
+
+   1. Update the name of the parameter to `storageAccountName` and the description to `Storage Account Name`.
+
+   2. Azure storage account names have a minimum length of 3 characters and a maximum of 24. Add both `minLength` and `maxLength` to the parameter and provide appropriate values.
+
+The `parameters` block should look similar to the example below.
 
 ```azurecli-interactive
-az vm create \
-    --resource-group az204-vm-rg \
-    --name az204vm \
-    --image UbuntuLTS \
-    --generate-ssh-keys \
-    --admin-username azureuser \
-    --public-ip-sku Standard
+"parameters": {
+    "storageAccountName": {
+        "type": "string",
+        "metadata": {
+            "description": "Storage Account Name"
+        },
+        "minLength": 3,
+        "maxLength": 24
+    }
+},
 ```
 
-It will take a few minutes for the operation to complete. When it is finished note the `publicIpAddress` in the output, you'll use it in the next step.
-<br> 
+Follow the steps below to update the name property of the storage resource to use the parameter.
 
-## Install web server
+   1. In the `resources` block, delete the current default name which is `storageaccount1` in the examples above. Leave the quotes (`""`) around the name in place.
 
-1. By default, only SSH connections are opened when you create a Linux VM in Azure. Use `az vm open-port` to open TCP port 80 for use with the NGINX web server:
+   2. Enter a square bracket `[`, which produces a list of Azure Resource Manager template functions. Select parameters from the list.
+
+   3. Add `()` at the end of parameters and select storageAccountName from the pop-up. If the list of parameters does not show up automatically you can enter a single quote `'` inside of the round brackets to display the list.
+
+The resources block of the template should now be similar to the example below.
 
 ```azurecli-interactive
-az vm open-port --port 80 \
---resource-group az204-vm-rg \
---name az204vm
+"resources": [{
+    "name": "[parameters('storageAccountName')]",
+    "type": "Microsoft.Storage/storageAccounts",
+    "apiVersion": "2019-06-01",
+    "tags": {
+        "displayName": "storageaccount1"
+    },
+    "location": "[resourceGroup().location]",
+    "kind": "StorageV2",
+    "sku": {
+        "name": "Premium_LRS",
+        "tier": "Premium"
+    }
+}],
 ```
 
-2. Connect to your VM by using SSH. Replace `<publicIPAddress>` in the example with the public IP address of your VM as noted in the previous output:
+## Create a parameter file
 
-```azurecli-interactive
-ssh azureuser@<publicIPAddress>
-```
+An Azure Resource Manager template parameter file allows you to store environment-specific parameter values and pass these values in as a group at deployment time. This is useful if you want to have values specific to a test or production environment, for example. The extension makes it easy to create a parameter file that is mapped to your existing template. Follow the steps below to create a parameter file.
 
-3. To see your VM in action, install the NGINX web server. Update your package sources and then install the latest NGINX package.
+   1. With the azuredeploy.json file in focus open the Command Palette by selecting View > Command Palette from the menu bar.
+   2. In the Command Palette enter "parameter" in the search bar and select Azure Resource Manager Tools:Select/Create Parameter File.
 
-```azurecli-interactive
-sudo apt-get -y update
-sudo apt-get -y install nginx
-```
-
-4. When done type `exit` to leave the SSH session.
-
-## View the web server in action
-
-Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
-
-![alt text](images/provision_vm_09.png)
+![alt text](images/create_arm_08.png)
 
 ## Clean up resources
 
