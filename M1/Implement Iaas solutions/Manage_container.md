@@ -47,9 +47,11 @@ If a regional outage occurs, the registry data may become unavailable and is not
 Very high numbers of repositories and tags can impact the performance of your registry. Periodically delete unused repositories, tags, and images as part of your registry maintenance routine. Deleted registry resources like repositories, images, and tags cannot be recovered after deletion.
 
 ### Build and manage containers with tasks
+
 ACR Tasks is a suite of features within Azure Container Registry. It provides cloud-based container image building for platforms including Linux, Windows, and Azure Resource Manager, and can automate OS and framework patching for your Docker containers. ACR Tasks enables automated builds triggered by source code updates, updates to a container's base image, or timers.
 
 #### Task scenarios
+
 ACR Tasks supports several scenarios to build and maintain container images and other artifacts.
 
    * **Quick task** - Build and push a single container image to a container registry on-demand, in Azure, without needing a local Docker Engine installation. Think `docker build`, `docker push` in the cloud.
@@ -64,6 +66,7 @@ ACR Tasks supports several scenarios to build and maintain container images and 
 Each ACR Task has an associated source code context - the location of a set of source files used to build a container image or other artifact. Example contexts include a Git repository or a local filesystem.
 
 ### Explore elements of a Dockerfile
+
 If you want to create a custom container you will need to understand the elements of a Dockerfile. A Dockerfile is a text file that contains the instructions we use to build and run a Docker image. The following aspects of the image are defined:
 
    * The base or parent image we use to create the new image
@@ -127,12 +130,12 @@ In this exercise you will use ACR Tasks to perform the following actions:
    * Run the image in the ACR
 
 
-## Prerequisites
+### Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
    
 
-## Login to Azure and start the Cloud Shell
+### Login to Azure and start the Cloud Shell
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
 ![alt text](images/provision_vm_05.png)
@@ -142,7 +145,7 @@ In this exercise you will use ACR Tasks to perform the following actions:
 ![alt text](images/provision_vm_06.png)
 
 
-## Create an Azure Container Registry
+### Create an Azure Container Registry
 
 1. Create a resource group for the registry. 
 
@@ -159,7 +162,7 @@ az acr create --resource-group az204-acr-rg \
 
   > **Note**: The command above creates a Basic registry, a cost-optimized option for developers learning about Azure Container Registry.
 
-## Build and push image from a Dockerfile
+### Build and push image from a Dockerfile
   
 Now use Azure Container Registry to build and push an image based on a local Dockerfile.
 
@@ -196,7 +199,7 @@ The command above will generate a lot of output, below is shortened sample of th
 Run ID: cf1 was successful after 11s
 ```
 
-## Verify the results
+### Verify the results
 
 1. Use the `az acr repository list` command to list the repositories in your registry. Replace `<myContainerRegistry>` with the name you used earlier.
 
@@ -227,7 +230,7 @@ Result
 v1
 ```
 
-## Run the image in the ACR
+### Run the image in the ACR
 
 1. Run the sample/hello-world:v1 container image from your container registry by using the `az acr run` command. The following example uses `$Registry` to specify the registry where you run the command. Replace `<myContainerRegistry>` with the name you used earlier.
 
@@ -265,11 +268,12 @@ This message shows that your installation appears to be working correctly.
 Run ID: cab was successful after 6s
 ``` 
 
-## Clean up resources
+### Clean up resources
 
 When no longer needed, you can use the `az group delete` command to remove the resource group, the container registry, and the container images stored there.
 
 ```azurecli-interactive
 az group delete --name az204-acr-rg --no-wait
 ```
+
 > **Note**: This operation takes on average 5 - 10 minutes
