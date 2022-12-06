@@ -167,7 +167,7 @@ sudo apt-get -y install nginx
 
 Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
 
-![alt text](images/provision_vm_09.png)
+![alt text](images/provision_vm_08.png)
 
 ## Clean up resources
 
