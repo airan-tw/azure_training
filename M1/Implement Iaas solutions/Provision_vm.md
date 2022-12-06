@@ -11,6 +11,7 @@ An Azure virtual machine gives you the flexibility of virtualization without hav
 * **Extended datacenter** – Virtual machines in an Azure virtual network can easily be connected to your organization’s network.
 
 ### Design considerations for virtual machine creation:
+
 * **Availability:** Azure supports a single instance virtual machine Service Level Agreement of 99.9% provided you deploy the VM with premium storage for all disks.
 * **VM size:** The size of the VM that you use is determined by the workload that you want to run. The size that you choose then determines factors such as processing power, memory, and storage capacity.
 * **VM limits:** Your subscription has default quota limits in place that could impact the deployment of many VMs for your project.
@@ -35,29 +36,34 @@ For Linux VMs, Azure supports cloud-init across most Linux distributions that su
 
 
 ### Availability zones
+
 * A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
 * Azure services that support Availability Zones fall into two categories:
   * Zonal services: Where a resource is pinned to a specific zone (for example, virtual machines, managed disks, Standard IP addresses), or
   * Zone-redundant services: When the Azure platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
 
 ### Availability sets
+
 * Composed of two additional groupings that protect against hardware failures and allow updates to safely be applied - fault domains (FDs) and update domains (UDs).
 
 ### VM scale sets
 * Visit https://docs.microsoft.com/azure/virtual-machine-scale-sets/overview?context=/azure/virtual-machines/context/context
 
 ### Load balancer
+
 * Combine the Azure Load Balancer with an availability zone or availability set to get the most application resiliency.
 * Define a front-end IP configuration that contains one or more public IP addresses.
 * Virtual machines connect to a load balancer using their virtual network interface card (NIC).
 * Define load balancer rules for specific ports and protocols that map to your VMs to control traffic flow.
 
 ### What is a fault domain?
+
 A fault domain is a logical group of underlying hardware that share a common power source and network switch, similar to a rack within an on-premises datacenter. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these fault domains. This approach limits the impact of potential physical hardware failures, network outages, or power interruptions.
 
 ![alt text](images/provision_vm_01.png) 
 
 ### Update domains
+
 An update domain is a logical group of underlying hardware that can undergo maintenance or be rebooted at the same time. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these update domains. This approach ensures that at least one instance of your application always remains running as the Azure platform undergoes periodic maintenance. The order of update domains being rebooted may not proceed sequentially during planned maintenance, but only one update domain is rebooted at a time.
 
 ![alt text](images/provision_vm_02.png)
@@ -69,6 +75,7 @@ For a given availability set, five non-user-configurable update domains are assi
 ![alt text](images/provision_vm_03.png)
 
 ### What if my size needs change?
+
 Azure allows you to change the VM size when the existing size no longer meets your needs. You can resize the VM - as long as your current hardware configuration is allowed in the new size. This provides a fully agile and elastic approach to VM management.
 If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
 
@@ -78,7 +85,7 @@ If you stop and deallocate the VM, you can then select any size available in you
 <br>
 
 
-# Exercise: Create a virtual machine by using the Azure CLI
+## Exercise: Create a virtual machine by using the Azure CLI
 ![alt text](images/provision_vm_04.png)
 
 In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
@@ -88,12 +95,12 @@ In this exercise you'll create a Linux virtual machine by performing the followi
   * Clean up resources
 
 
-## Prerequisites
+### Prerequisites
 
   * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
    
 
-## Login to Azure and start the Cloud Shell
+### Login to Azure and start the Cloud Shell
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
 ![alt text](images/provision_vm_05.png)
@@ -103,7 +110,7 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 ![alt text](images/provision_vm_06.png)
 
 
-## Create a resource group and virtual machine
+### Create a resource group and virtual machine
 
 1. Create a resource group with the `az group create` command. The command below creates a resource group named az204-vm-rg. 
 
@@ -113,8 +120,8 @@ az group create --name az204-vm-rg --location eastus
 ```
 
 2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
-3. 
-## Create virtual machine
+
+### Create virtual machine
 
 ```azurecli-interactive
 az vm create \
@@ -129,7 +136,7 @@ az vm create \
 It will take a few minutes for the operation to complete. When it is finished note the `publicIpAddress` in the output, you'll use it in the next step.
 <br> 
 
-## Install web server
+### Install web server
 
 1. By default, only SSH connections are opened when you create a Linux VM in Azure. Use `az vm open-port` to open TCP port 80 for use with the NGINX web server:
 
@@ -154,17 +161,18 @@ sudo apt-get -y install nginx
 
 4. When done type `exit` to leave the SSH session.
 
-## View the web server in action
+### View the web server in action
 
 Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
 
 ![alt text](images/provision_vm_07.png)
 
-## Clean up resources
+### Clean up resources
 
 You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
 
 ```azurecli-interactive
 az group delete --name az204-vm-rg --no-wait
 ```
+
 > **Note**: This operation takes on average 5 - 10 minutes
