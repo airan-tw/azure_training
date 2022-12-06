@@ -7,42 +7,78 @@ ARM (Azure Resource Manager) template is a block of code that defines the infras
 
 ![alt text](images/create_arm_01.png)
 
-#### Azure virtual machines can be used in various ways. Some examples are:
+### Explore Azure Resource Manager
 
-* **Development and test** – Azure VMs offer a quick and easy way to create a computer with specific configurations required to code and test an application.
-* **Applications in the cloud** – Because demand for your application can fluctuate, it might make economic sense to run it on a VM in Azure.
-* **Extended datacenter** – Virtual machines in an Azure virtual network can easily be connected to your organization’s network.
+When a user sends a request from any of the Azure tools, APIs, or SDKs, Resource Manager receives the request. It authenticates and authorizes the request. Resource Manager sends the request to the Azure service, which takes the requested action. Because all requests are handled through the same API, you see consistent results and capabilities in all the different tools.
 
-#### Design considerations for virtual machine creation:
-* **Availability:** Azure supports a single instance virtual machine Service Level Agreement of 99.9% provided you deploy the VM with premium storage for all disks.
-* **VM size:** The size of the VM that you use is determined by the workload that you want to run. The size that you choose then determines factors such as processing power, memory, and storage capacity.
-* **VM limits:** Your subscription has default quota limits in place that could impact the deployment of many VMs for your project.
-* **VM image:** You can either use your own image, or you can use one of the images in the Azure Marketplace.
-* **VM disks:** There are two components that make up this area. The type of disks which determines the performance level and the storage account type that contains the disks. Azure provides two types of disks:
-Standard disks: Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
-  * **Premium disks:** Backed by SSD-based, high-performance, low-latency disk. Perfect for VMs running production workload.
-And, there are two options for the disk storage:
-  * **Managed disks:** Managed disks are the newer and recommended disk storage model and they are managed by Azure.
-  * **Unmanaged disks:** With unmanaged disks, you’re responsible for the storage accounts that hold the virtual hard disks (VHDs) that correspond to your VM disks.
+The following image shows the role Azure Resource Manager plays in handling Azure requests.
 
-#### Virtual machine extensions
+![alt text](images/create_arm_02.png)
 
-Windows VMs have extensions which give your VM additional capabilities through post deployment configuration and automated tasks.
+### Why choose Azure Resource Manager templates?
 
-* **Run custom scripts:** The Custom Script Extension helps you configure workloads on the VM by running your script when the VM is provisioned.
-* **Deploy and manage configurations:** The PowerShell Desired State Configuration (DSC) Extension helps you set up DSC on a VM to manage configurations and environments.
-* **Collect diagnostics data:** The Azure Diagnostics Extension helps you configure the VM to collect diagnostics data that can be used to monitor the health of your application.
+If you're trying to decide between using Azure Resource Manager templates and one of the other infrastructure as code services, consider the following advantages of using templates:
 
-For Linux VMs, Azure supports cloud-init across most Linux distributions that support it and works with all the major automation tooling like Ansible, Chef, SaltStack, and Puppet.
-<br>
-<br> 
+   * **Declarative syntax:** Azure Resource Manager templates allow you to create and deploy an entire Azure infrastructure declaratively. For example, you can deploy not only virtual machines, but also the network infrastructure, storage systems, and any other resources you may need.
 
-![alt text](images/provision_vm_02.png)
-#### Availability zones
-* A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
-* Azure services that support Availability Zones fall into two categories:
-  * Zonal services: Where a resource is pinned to a specific zone (for example, virtual machines, managed disks, Standard IP addresses), or
-  * Zone-redundant services: When the Azure platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
+   * **Repeatable results:** Repeatedly deploy your infrastructure throughout the development lifecycle and have confidence your resources are deployed in a consistent manner. Templates are idempotent, which means you can deploy the same template many times and get the same resource types in the same state. You can develop one template that represents the desired state, rather than developing lots of separate templates to represent updates.
+
+   * **Orchestration:** You don't have to worry about the complexities of ordering operations. Resource Manager orchestrates the deployment of interdependent resources so they're created in the correct order. When possible, Resource Manager deploys resources in parallel so your deployments finish faster than serial deployments. You deploy the template through one command, rather than through multiple imperative commands.
+   
+### Template file
+
+Within your template, you can write template expressions that extend the capabilities of JSON. These expressions make use of the [functions](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions) provided by Resource Manager.
+
+The template has the following sections:
+
+   * [Parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters) - Provide values during deployment that allow the same template to be used with different environments.
+
+   * [Variables](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/variables) - Define values that are reused in your templates. They can be constructed from parameter values.
+
+   * [User-defined functions](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/user-defined-functions) - Create customized functions that simplify your template.
+
+   * [Resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-declaration) - Specify the resources to deploy.
+
+   * [Outputs](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/outputs) - Return values from the deployed resources.
+
+### Deploy multi-tiered solutions
+
+With Resource Manager, you can create a template (in JSON format) that defines the infrastructure and configuration of your Azure solution. By using a template, you can repeatedly deploy your solution throughout its lifecycle and have confidence your resources are deployed in a consistent state.
+
+When you deploy a template, Resource Manager converts the template into REST API operations. For example, when Resource Manager receives a template with the following resource definition:
+
+```azurecli-interactive
+"resources": [
+  {
+    "type": "Microsoft.Storage/storageAccounts",
+    "apiVersion": "2019-04-01",
+    "name": "mystorageaccount",
+    "location": "westus",
+    "sku": {
+      "name": "Standard_LRS"
+    },
+    "kind": "StorageV2",
+    "properties": {}
+  }
+]
+```
+
+It converts the definition to the following REST API operation, which is sent to the `Microsoft.Storage` resource provider:
+
+```azurecli-interactive
+PUT
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/mystorageaccount?api-version=2019-04-01
+REQUEST BODY
+{
+  "location": "westus",
+  "sku": {
+    "name": "Standard_LRS"
+  },
+  "kind": "StorageV2",
+  "properties": {}
+}
+```
+
 
 #### Availability sets
 * Composed of two additional groupings that protect against hardware failures and allow updates to safely be applied - fault domains (FDs) and update domains (UDs).
