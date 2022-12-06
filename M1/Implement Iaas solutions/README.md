@@ -1,6 +1,5 @@
 # Implement Iaas solutions
 
----
 
 ## About the module
 
@@ -18,5 +17,5 @@ This module instructs students on how to use create VMs and container images to 
 ---
 ## Hands-on Labs 
 * [Lab 01: Create a VM by using the Azure Command-Line Interface (CLI)](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/lab01.md)
-* Lab 02: Create a Docker container image and deploy it to Azure Container Registry
-* Lab 03: Deploy an Azure container instance
+* [Lab 02: Create a Docker container image and deploy it to Azure Container Registry](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/lab02.md)
+* [Lab 03: Deploy an Azure container instance](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/lab03.md)
