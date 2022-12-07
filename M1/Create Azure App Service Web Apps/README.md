@@ -8,11 +8,10 @@ This module Students will learn how to build a web application on the Azure App 
 
 ## Modules in this learning path:
 
-* [Azure App Service core concepts](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_core.md)
-* [Creating an Azure App Service Web App](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Creating_azure_app_service.md)
-* [Configuring and Monitoring App Service apps](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Config_monitor_app_service.md)
-* [Scaling App Service apps](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Scaling_app_service.md)
-* [Azure App Service staging environments](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_staging.md)
+* [Explore Azure App Service](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_core.md)
+* [Configure web app settings](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Creating_azure_app_service.md)
+* [Scale apps in Azure App Service]((https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Scaling_app_service.md)
+* [Explore Azure App Service deployment slots](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_staging.md)
 <br>
 
 
