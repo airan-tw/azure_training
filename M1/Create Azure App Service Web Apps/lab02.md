@@ -1,6 +1,6 @@
-### Exercise 2: Build a front-end web application by using Azure Web Apps
+## Exercise 2: Build a front-end web application by using Azure Web Apps
 
-#### Task 1: Create a web app
+### Task 1: Create a web app
 
 1. On the Azure portal's **navigation** pane, select **Create a resource**.
 
@@ -37,7 +37,7 @@ The following screenshot displays the configured settings on the **Create web ap
 
 1. On the **Overview** blade, select the **Go to resource** button to navigate to the blade of the newly created web app.
 
-#### Task 2: Configure a web app
+### Task 2: Configure a web app
 
 1. On the **App Service** blade, in the **Settings** section, select the **Configuration** link.
 
@@ -52,7 +52,7 @@ The following screenshot displays the configured settings on the **Create web ap
 
     > **Note**: Wait for the application settings to save before you continue with this lab.
 
-#### Task 3: Deploy an `ASP.NET` web application to Web Apps
+### Task 3: Deploy an `ASP.NET` web application to Web Apps
 
 1. On the taskbar, select the **Visual Studio Code** icon.
 
@@ -140,6 +140,6 @@ The following screenshot displays the configured settings on the **Create web ap
 
 1. Close the currently running Visual Studio Code and Windows Terminal applications.
 
-#### Review
+## Review
 
 In this exercise, you created an Azure web app and deployed an existing web application’s code to the resource in the cloud.
