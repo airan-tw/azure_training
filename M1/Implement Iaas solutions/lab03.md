@@ -1,6 +1,6 @@
-### Exercise 3: Deploy an Azure container instance
+## Exercise 3: Deploy an Azure container instance
 
-#### Task 1: Enable the admin user in Container Registry
+### Task 1: Enable the admin user in Container Registry
 
 1.  On the Azure portal's **navigation** pane, select the **Resource groups** link.
 
@@ -12,7 +12,7 @@
 
 1.  Select **Save**, and then close the **Update container registry** blade.
 
-#### Task 2: Automatically deploy a container image to an Azure container instance
+### Task 2: Automatically deploy a container image to an Azure container instance
 
 1.  On the **Container Registry** blade, in the **Services** section, select the **Repositories** link.
 
@@ -40,7 +40,7 @@
 
     > **Note**: Wait for the container instance to be created before you continue with this lab.
 
-#### Task 3: Manually deploy a container image to Container Instances
+### Task 3: Manually deploy a container image to Container Instances
 
 1.  On the Azure portal's **navigation** pane, select the **Create a resource** link.
 
@@ -73,7 +73,7 @@
 
     > **Note**: Wait for the container instance to be created before you continue with this lab.
 
-#### Task 4: Validate that the container instance ran successfully
+### Task 4: Validate that the container instance ran successfully
 
 1.  On the Azure portal's navigation pane, select the **Resource groups** link.
 
@@ -93,19 +93,21 @@
 
 > **Note**: After the application finishes running, the container terminates because it has completed its work. For the manually created container instance, you indicated that a successful exit was acceptable, so the container ran once. The automatically created instance didn't offer this option, and it assumes the container should always be running, so you'll notice repeated restarts of the container.
 
-#### Review
+## Review
 
 In this exercise, you used multiple methods to deploy a container image to an Azure container instance. By using the manual method, you were able to customize the deployment further and to run task-based applications as part of a container run.
 
-### Exercise 4: Clean up your subscription
+<br>
 
-#### Task 1: Open Azure Cloud Shell and list resource groups
+## Exercise 4: Clean up your subscription
+
+### Task 1: Open Azure Cloud Shell and list resource groups
 
 1.  In the Azure portal, select the **Cloud Shell** icon ![alt text](images/az204_lab_CloudShell.png) to open a new Bash session. If Cloud Shell defaults to a PowerShell session, select **PowerShell**, and then in the drop-down menu, select **Bash**.
 
     > **Note**: If this is the first time you're starting **Cloud Shell**, when prompted to select either **Bash** or **PowerShell**, select **PowerShell**. When you're presented with the **You have no storage mounted** message, select the subscription you're using in this lab, and then select **Create storage**.
 
-#### Task 2: Delete resource groups
+### Task 2: Delete resource groups
 
 1.  On the **Cloud Shell** pane, run the following command to delete the **ContainerCompute** resource group:
 
@@ -117,10 +119,10 @@ In this exercise, you used multiple methods to deploy a container image to an Az
 
 1. Close the **Cloud Shell** pane in the portal.
 
-#### Task 3: Close the active applications
+### Task 3: Close the active applications
 
 -   Close the currently running Microsoft Edge application.
 
-#### Review
+## Review
 
 In this exercise, you cleaned up your subscription by removing the resource groups used in this lab.
