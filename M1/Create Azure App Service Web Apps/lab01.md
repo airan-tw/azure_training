@@ -25,7 +25,7 @@
 
     The following screenshot displays the configured settings on the **Basics** tab of the **Create a storage account** blade.
 
-   ![alt text](images/01_create_a_storage_account.png)
+   ![alt text](images/l01_create_a_storage_account.png)
 
 1. On the **Review** tab, review the options that you selected during the previous steps.
 
