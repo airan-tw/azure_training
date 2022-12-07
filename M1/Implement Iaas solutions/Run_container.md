@@ -1,6 +1,4 @@
-## Run container images in Azure Container Instances
-
-### Explore Azure Container Instances
+## Azure Container Instances
 
 Azure Container Instances (ACI) is a great solution for any scenario that can operate in isolated containers, including simple applications, task automation, and build jobs. Here are some of the benefits:
 
@@ -64,10 +62,9 @@ Multi-container groups are useful in cases where you want to divide a single fun
    * An application container and a monitoring container. The monitoring container periodically makes a request to the application to ensure that it's running and responding correctly, and raises an alert if it's not.
    * A front-end container and a back-end container. The front end might serve a web application, with the back end running a service to retrieve data.
 
----
 <br>
 
-### Exercise: Deploy a container instance by using the Azure CLI
+## Exercise: Deploy a container instance by using the Azure CLI
 
 ![alt text](images/run_container_02.png)
 
