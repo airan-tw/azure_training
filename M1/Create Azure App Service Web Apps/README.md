@@ -8,10 +8,10 @@ This module Students will learn how to build a web application on the Azure App 
 
 ## Modules in this learning path:
 
-* [Explore Azure App Service](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_core.md)
-* [Configure web app settings](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Creating_azure_app_service.md)
+* [Explore Azure App Service](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service)
+* [Configure web app settings](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Config_app_service.md)
 * [Scale apps in Azure App Service](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Scaling_app_service.md)
-* [Explore Azure App Service deployment slots](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_staging.md)
+* [Explore Azure App Service deployment slots](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/Azure_app_service_deploy.md)
 <br>
 
 
