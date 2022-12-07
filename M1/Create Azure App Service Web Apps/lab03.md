@@ -1,4 +1,4 @@
-## Exercise 3: Clean up your subscription
+## Lab 03: Clean up your subscription
 
 ### Task 1: Open Azure Cloud Shell
 
