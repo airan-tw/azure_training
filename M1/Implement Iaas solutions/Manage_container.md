@@ -1,6 +1,4 @@
-## Manage container images in Azure Container Registry
-
-### Discover the Azure Container Registry
+## Discover the Azure Container Registry
 
 Use the Azure Container Registry (ACR) service with your existing container development and deployment pipelines, or use Azure Container Registry Tasks to build container images in Azure. Build on demand, or fully automate builds with triggers such as source code commits and base image updates.
 
@@ -32,7 +30,9 @@ Grouped in a repository, each image is a read-only snapshot of a Docker-compatib
 Use Azure Container Registry Tasks (ACR Tasks) to streamline building, testing, pushing, and deploying images in Azure. Configure build tasks to automate your container OS and framework patching pipeline, and build images automatically when your team commits code to source control.
 Windows VMs have extensions which give your VM additional capabilities through post deployment configuration and automated tasks.
 
-### Explore storage capabilities
+<br>
+
+## Explore storage capabilities
 
 Every Basic, Standard, and Premium Azure container registry benefits from advanced Azure storage features like encryption-at-rest for image data security and geo-redundancy for image data protection.
 
@@ -46,7 +46,9 @@ If a regional outage occurs, the registry data may become unavailable and is not
 
 Very high numbers of repositories and tags can impact the performance of your registry. Periodically delete unused repositories, tags, and images as part of your registry maintenance routine. Deleted registry resources like repositories, images, and tags cannot be recovered after deletion.
 
-### Build and manage containers with tasks
+<br>
+
+## Build and manage containers with tasks
 
 ACR Tasks is a suite of features within Azure Container Registry. It provides cloud-based container image building for platforms including Linux, Windows, and Azure Resource Manager, and can automate OS and framework patching for your Docker containers. ACR Tasks enables automated builds triggered by source code updates, updates to a container's base image, or timers.
 
@@ -65,7 +67,9 @@ ACR Tasks supports several scenarios to build and maintain container images and 
 
 Each ACR Task has an associated source code context - the location of a set of source files used to build a container image or other artifact. Example contexts include a Git repository or a local filesystem.
 
-### Explore elements of a Dockerfile
+<br>
+
+## Explore elements of a Dockerfile
 
 If you want to create a custom container you will need to understand the elements of a Dockerfile. A Dockerfile is a text file that contains the instructions we use to build and run a Docker image. The following aspects of the image are defined:
 
@@ -114,8 +118,6 @@ Each of these steps creates a cached container image as we build the final conta
 
 Finally, notice the last step, step 8. The `ENTRYPOINT` in the file indicates which process will execute once we run a container from an image.
 
-
----
 <br>
 
 ## Exercise: Build and run a container image by using Azure Container Registry Tasks
