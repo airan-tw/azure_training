@@ -22,6 +22,6 @@
 
 -   Close the currently running Microsoft Edge application.
 
-### Review
+## Review
 
 In this exercise, you cleaned up your subscription by removing the resource groups used in this lab.
