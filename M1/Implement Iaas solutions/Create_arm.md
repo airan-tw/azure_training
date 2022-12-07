@@ -1,7 +1,4 @@
-
-## Create and deploy Azure Resource Manager templates
-
-### ARM Template: Azure Resource Manager Template
+## ARM Template: Azure Resource Manager Template
 
 ARM (Azure Resource Manager) template is a block of code that defines the infrastructure and configuration for your project. These templates use a declarative syntax to let you define your deployment in the form of JSON (JavaScript Object Notation) files. All the resources and their properties are defined in this template. This helps in automating the deployment process in a constant flow.
 
@@ -139,8 +136,9 @@ Output defines the result that you want to see when a template runs. In simple w
 }
 ```
 
+<br>
 
-### Deploy multi-tiered solutions
+## Deploy multi-tiered solutions
 
 With Resource Manager, you can create a template (in JSON format) that defines the infrastructure and configuration of your Azure solution. By using a template, you can repeatedly deploy your solution throughout its lifecycle and have confidence your resources are deployed in a consistent state.
 
@@ -190,6 +188,7 @@ You can deploy a template using any of the following options:
    * Azure Cloud Shell
 
 ### Defining multi-tiered templates
+
 How you define templates and resource groups is entirely up to you and how you want to manage your solution. For example, you can deploy a three tier application through a single template to a single resource group.
 
 ![alt text](images/create_arm_03.png)
@@ -214,7 +213,6 @@ After creating your template, you may wish to share it with other users in your 
 
 This approach means you can safely share templates that meet your organization's standards.
 
----
 <br>
 
 ## Exercise: Create and deploy Azure Resource Manager templates by using Visual Studio Code
