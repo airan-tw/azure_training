@@ -85,14 +85,17 @@ If you stop and deallocate the VM, you can then select any size available in you
 <br>
 
 
-## Exercise: Create a virtual machine by using the Azure CLI
+## Exercise: Create a static HTML web app by using Azure Cloud Shell
 ![alt text](images/provision_vm_04.png)
 
-In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
-  * Create a resource group and a virtual machine
-  * Install a web server
-  * View the web server in action
-  * Clean up resources
+In this exercise, you'll deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. You'll then update the code and redeploy it by using the same command.
+
+The `az webapp up` command makes it easy to create and update web apps. When executed it performs the following actions:
+
+* Create a default resource group if one isn't specified.
+* Create a default app service plan.
+* Create an app with the specified name.
+* Zip deploy files from the current working directory to the web app.
 
 
 ### Prerequisites
@@ -110,31 +113,56 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 ![alt text](images/provision_vm_06.png)
 
 
-### Create a resource group and virtual machine
+### Download the sample app
 
-1. Create a resource group with the `az group create` command. The command below creates a resource group named az204-vm-rg. 
+In this section you'll use the sandbox to download the sample app and set variables to make some of the commands easier to enter.
 
-
-```azurecli-interactive
-az group create --name az204-vm-rg --location eastus
-```
-
-2. Create a VM with the `az vm create` command. The command below creates a Linux VM named az204vm with an admin user named azureuser.
-
-### Create virtual machine
+1. In the sandbox create a directory and then navigate to it.
 
 ```azurecli-interactive
-az vm create \
-    --resource-group az204-vm-rg \
-    --name az204vm \
-    --image UbuntuLTS \
-    --generate-ssh-keys \
-    --admin-username azureuser \
-    --public-ip-sku Standard
+mkdir htmlapp
+
+cd htmlapp
 ```
 
-It will take a few minutes for the operation to complete. When it is finished note the `publicIpAddress` in the output, you'll use it in the next step.
-<br> 
+2. Run the following `git` command to clone the sample app repository to your htmlapp directory.
+
+```azurecli-interactive
+git clone https://github.com/Azure-Samples/html-docs-hello-world.git
+```
+
+3. Set variables to hold the resource group and app names by running the following commands.
+
+```azurecli-interactive
+resourceGroup=$(az group list --query "[].{id:name}" -o tsv)
+appName=az204app$RANDOM
+```
+
+### Create the web app
+
+1. Change to the directory that contains the sample code and run the `az webapp up` command.
+
+```azurecli-interactive
+cd html-docs-hello-world
+
+az webapp up -g $resourceGroup -n $appName --html
+```
+
+This command may take a few minutes to run. While running, it displays information similar to the example below.
+
+```azurecli-interactive
+{
+"app_url": "https://<myAppName>.azurewebsites.net",
+"location": "westeurope",
+"name": "<app_name>",
+"os": "Windows",
+"resourcegroup": "<resource_group_name>",
+"serverfarm": "appsvc_asp_Windows_westeurope",
+"sku": "FREE",
+"src_path": "/home/<username>/demoHTML/html-docs-hello-world ",
+< JSON data removed for brevity. >
+}
+```
 
 ### Install web server
 
@@ -146,22 +174,23 @@ az vm open-port --port 80 \
 --name az204vm
 ```
 
-2. Connect to your VM by using SSH. Replace `<publicIPAddress>` in the example with the public IP address of your VM as noted in the previous output:
+2. Open a new tab in your browser and navigate to the app URL (`https://<myAppName>.azurewebsites.net`) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
+
+> **Note**: You can copy `<myAppName>.azurewebsites.net` from the output of the previous command, or select the URL in the output to open the site in a new tab.
+
+### Update and redeploy the app
+
+1.In the Cloud Shell, type `code index.html` to open the editor. In the `<h1>` heading tag, change Azure App Service - Sample Static HTML Site to Azure App Service Updated - or to anything else that you'd like.
+
+2. Use the commands ctrl-s to save and ctrl-q to exit.
+
+3. Redeploy the app with the same az webapp up command you used earlier.
 
 ```azurecli-interactive
-ssh azureuser@<publicIPAddress>
+az webapp up -g $resourceGroup -n $appName --html
 ```
 
-3. To see your VM in action, install the NGINX web server. Update your package sources and then install the latest NGINX package.
-
-```azurecli-interactive
-sudo apt-get -y update
-sudo apt-get -y install nginx
-```
-
-4. When done type `exit` to leave the SSH session.
-
-### View the web server in action
+4. Once deployment is completed switch back to the browser from step 2 in the "Create the web app" section above and refresh the page.
 
 Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
 
