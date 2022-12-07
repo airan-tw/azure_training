@@ -13,6 +13,8 @@ App Service on Linux does have some limitations:
  * Historically, you could not mix Windows and Linux apps in the same resource group. However, all resource groups created on or after January 21, 2021 do support this scenario. Support for resource groups created before January 21, 2021 will be rolled out across Azure regions (including National cloud regions) soon.
  * The Azure portal shows only features that currently work for Linux apps. As features are enabled, they're activated on the portal.
 
+<br>
+
 ## Azure App Service plans
 
 In App Service, an app (Web Apps, API Apps, or Mobile Apps) always runs in an App Service plan. An App Service plan defines a set of compute resources for a web app to run. One or more apps can be configured to run on the same computing resources (or in the same App Service plan). In addition, Azure Functions also has the option of running in an App Service plan.
@@ -27,17 +29,23 @@ Isolate your app into a new App Service plan when:
 
 This way you can allocate a new set of resources for your app and gain greater control of your apps.
 
+<br>
+
 ## Deploy to App Service
 
 Every development team has unique requirements that can make implementing an efficient deployment pipeline difficult on any cloud service. App Service supports both automated and manual deployment.
 
 ![alt text](images/azure_app_service_03.png)
 
+<br>
+
 ## Authentication and authorization in App Service
 
 Azure App Service provides built-in authentication and authorization support, so you can sign in users and access data by writing minimal or no code in your web app, API, and mobile back end, and also Azure Functions.
 
 ![alt text](images/azure_app_service_04.png)
+
+<br>
 
 ## App Service networking features
 
@@ -46,6 +54,8 @@ By default, apps hosted in App Service are accessible directly through the inter
 There are two main deployment types for Azure App Service. The multitenant public service hosts App Service plans in the Free, Shared, Basic, Standard, Premium, PremiumV2, and PremiumV3 pricing SKUs. There is also the single-tenant App Service Environment (ASE) hosts Isolated SKU App Service plans directly in your Azure virtual network.
 
 ![alt text](images/azure_app_service_05.png)
+
+<br>
 
 ## Exercise: Create a static HTML web app by using Azure Cloud Shell
 
