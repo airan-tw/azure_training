@@ -39,10 +39,19 @@ Every development team has unique requirements that can make implementing an eff
 
 Azure App Service provides built-in authentication and authorization support, so you can sign in users and access data by writing minimal or no code in your web app, API, and mobile back end, and also Azure Functions.
 
+![alt text](images/azure_app_service_04.png)
 
+## App Service networking features
+
+By default, apps hosted in App Service are accessible directly through the internet and can reach only internet-hosted endpoints. But for many applications, you need to control the inbound and outbound network traffic.
+
+There are two main deployment types for Azure App Service. The multitenant public service hosts App Service plans in the Free, Shared, Basic, Standard, Premium, PremiumV2, and PremiumV3 pricing SKUs. There is also the single-tenant App Service Environment (ASE) hosts Isolated SKU App Service plans directly in your Azure virtual network.
+
+![alt text](images/azure_app_service_05.png)
 
 ## Exercise: Create a static HTML web app by using Azure Cloud Shell
-![alt text](images/provision_vm_04.png)
+
+![alt text](images/azure_app_service_06.png)
 
 In this exercise, you'll deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. You'll then update the code and redeploy it by using the same command.
 
