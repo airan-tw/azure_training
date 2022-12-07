@@ -1,4 +1,4 @@
-## Exercise 1: Create a VM by using the Azure Command-Line Interface (CLI)
+## Lab 01: Create a VM by using the Azure Command-Line Interface (CLI)
 
 ### Task 1: Open the Azure portal
 
