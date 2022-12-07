@@ -160,7 +160,7 @@ az webapp up -g $resourceGroup -n $appName --html
 You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
 
 ```azurecli-interactive
-az group delete --name $resourceGroup
+az group delete --name <resource_group_name>
 ```
 
 > **Note**: This operation takes on average 5 - 10 minutes
