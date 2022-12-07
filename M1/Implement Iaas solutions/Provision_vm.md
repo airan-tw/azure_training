@@ -1,6 +1,4 @@
-## Provision Virtual Machines in Azure
-
-### Azure virtual machines
+## Azure virtual machines
 
 An Azure virtual machine gives you the flexibility of virtualization without having to buy and maintain the physical hardware that runs it. However, you still need to maintain the VM by performing tasks, such as configuring, patching, and installing the software that runs on it. This unit gives you information about what you should consider before you create a VM, how you create it, and how you manage it.
 
@@ -34,6 +32,11 @@ Windows VMs have extensions which give your VM additional capabilities through p
 
 For Linux VMs, Azure supports cloud-init across most Linux distributions that support it and works with all the major automation tooling like Ansible, Chef, SaltStack, and Puppet.
 
+<br>
+
+## Compare virtual machine availability options
+
+Azure offers several options for ensuring the availability of the virtual machines, and applications, you have deployed.
 
 ### Availability zones
 
@@ -81,9 +84,7 @@ If you stop and deallocate the VM, you can then select any size available in you
 
 **Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
 
----
 <br>
-
 
 ## Exercise: Create a virtual machine by using the Azure CLI
 ![alt text](images/provision_vm_04.png)
