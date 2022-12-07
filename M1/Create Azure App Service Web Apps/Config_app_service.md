@@ -1,5 +1,3 @@
-## Create Azure App Service Web Apps
-
 ## Configure web app settings
 
 In App Service, app settings are variables passed as environment variables to the application code. For Linux apps and custom containers, App Service passes app settings to the container using the `--env` flag to set the environment variable in the container.
