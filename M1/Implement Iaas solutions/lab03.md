@@ -1,4 +1,4 @@
-## Exercise 3: Deploy an Azure container instance
+## Lab 03: Deploy an Azure container instance
 
 ### Task 1: Enable the admin user in Container Registry
 
