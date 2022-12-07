@@ -1,89 +1,111 @@
-## Provision Virtual Machines in Azure
+## Create Azure App Service Web Apps
 
-### Azure virtual machines
+## Azure App Service
 
-An Azure virtual machine gives you the flexibility of virtualization without having to buy and maintain the physical hardware that runs it. However, you still need to maintain the VM by performing tasks, such as configuring, patching, and installing the software that runs on it. This unit gives you information about what you should consider before you create a VM, how you create it, and how you manage it.
+Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. You can develop in your favorite programming language, be it .NET, .NET Core, Java, Ruby, Node.js, PHP, or Python. Applications run and scale with ease on both Windows and Linux-based environments.
 
-### Azure virtual machines can be used in various ways. Some examples are:
+### Built-in auto scale support
 
-* **Development and test** – Azure VMs offer a quick and easy way to create a computer with specific configurations required to code and test an application.
-* **Applications in the cloud** – Because demand for your application can fluctuate, it might make economic sense to run it on a VM in Azure.
-* **Extended datacenter** – Virtual machines in an Azure virtual network can easily be connected to your organization’s network.
+Baked into Azure App Service is the ability to scale up/down or scale out/in. Depending on the usage of the web app, you can scale the resources of the underlying machine that is hosting your web app up/down . Resources include the number of cores or the amount of RAM available. Scaling out/in is the ability to increase, or decrease, the number of machine instances that are running your web app.
 
-### Design considerations for virtual machine creation:
+### Continuous integration/deployment support
 
-* **Availability:** Azure supports a single instance virtual machine Service Level Agreement of 99.9% provided you deploy the VM with premium storage for all disks.
-* **VM size:** The size of the VM that you use is determined by the workload that you want to run. The size that you choose then determines factors such as processing power, memory, and storage capacity.
-* **VM limits:** Your subscription has default quota limits in place that could impact the deployment of many VMs for your project.
-* **VM image:** You can either use your own image, or you can use one of the images in the Azure Marketplace.
-* **VM disks:** There are two components that make up this area. The type of disks which determines the performance level and the storage account type that contains the disks. Azure provides two types of disks:
-   * **Standard disks:** Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
-    * **Premium disks:** Backed by SSD-based, high-performance, low-latency disk. Perfect for VMs running production workload.
-    
-      And, there are two options for the disk storage:
-       * **Managed disks:** Managed disks are the newer and recommended disk storage model and they are managed by Azure.
-       * **Unmanaged disks:** With unmanaged disks, you’re responsible for the storage accounts that hold the virtual hard disks (VHDs) that correspond to your VM disks.
+The Azure portal provides out-of-the-box continuous integration and deployment with Azure DevOps, GitHub, Bitbucket, FTP, or a local Git repository on your development machine. Connect your web app with any of the above sources and App Service will do the rest for you by auto-syncing code and any future changes on the code into the web app.
 
-### Virtual machine extensions
+### Deployment slots
 
-Windows VMs have extensions which give your VM additional capabilities through post deployment configuration and automated tasks.
+When you deploy your web app, web app on Linux, mobile back end, or API app to Azure App Service, you can use a separate deployment slot instead of the default production slot when you're running in the Standard, Premium, or Isolated App Service plan tier. Deployment slots are live apps with their own host names. App content and configurations elements can be swapped between two deployment slots, including the production slot.
 
-* **Run custom scripts:** The Custom Script Extension helps you configure workloads on the VM by running your script when the VM is provisioned.
-* **Deploy and manage configurations:** The PowerShell Desired State Configuration (DSC) Extension helps you set up DSC on a VM to manage configurations and environments.
-* **Collect diagnostics data:** The Azure Diagnostics Extension helps you configure the VM to collect diagnostics data that can be used to monitor the health of your application.
+### App Service on Linux
 
-For Linux VMs, Azure supports cloud-init across most Linux distributions that support it and works with all the major automation tooling like Ansible, Chef, SaltStack, and Puppet.
+App Service can also host web apps natively on Linux for supported application stacks. It can also run custom Linux containers (also known as Web App for Containers). App Service on Linux supports a number of language specific built-in images. Just deploy your code. Supported languages include: Node.js, Java (JRE 8 & JRE 11), PHP, Python, .NET Core, and Ruby. If the runtime your application requires is not supported in the built-in images, you can deploy it with a custom container.
 
+The languages, and their supported versions, are updated on a regular basis. You can retrieve the current list by using the following command in the Cloud Shell.
 
-### Availability zones
+```azurecli-interactive
+az webapp list-runtimes --os-type linux
+```
 
-* A physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
-* Azure services that support Availability Zones fall into two categories:
-  * Zonal services: Where a resource is pinned to a specific zone (for example, virtual machines, managed disks, Standard IP addresses), or
-  * Zone-redundant services: When the Azure platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
+### Limitations
 
-### Availability sets
+App Service on Linux does have some limitations:
 
-* Composed of two additional groupings that protect against hardware failures and allow updates to safely be applied - fault domains (FDs) and update domains (UDs).
+ * App Service on Linux is not supported on Shared pricing tier.
+ * You can't mix Windows and Linux apps in the same App Service plan.
+ * Historically, you could not mix Windows and Linux apps in the same resource group. However, all resource groups created on or after January 21, 2021 do support this scenario. Support for resource groups created before January 21, 2021 will be rolled out across Azure regions (including National cloud regions) soon.
+ * The Azure portal shows only features that currently work for Linux apps. As features are enabled, they're activated on the portal.
 
-### VM scale sets
-* Visit https://docs.microsoft.com/azure/virtual-machine-scale-sets/overview?context=/azure/virtual-machines/context/context
+## Azure App Service plans
 
-### Load balancer
+In App Service, an app (Web Apps, API Apps, or Mobile Apps) always runs in an App Service plan. An App Service plan defines a set of compute resources for a web app to run. One or more apps can be configured to run on the same computing resources (or in the same App Service plan). In addition, Azure Functions also has the option of running in an App Service plan.
 
-* Combine the Azure Load Balancer with an availability zone or availability set to get the most application resiliency.
-* Define a front-end IP configuration that contains one or more public IP addresses.
-* Virtual machines connect to a load balancer using their virtual network interface card (NIC).
-* Define load balancer rules for specific ports and protocols that map to your VMs to control traffic flow.
+When you create an App Service plan in a certain region (for example, West Europe), a set of compute resources is created for that plan in that region. Whatever apps you put into this App Service plan run on these compute resources as defined by your App Service plan. Each App Service plan defines:
 
-### What is a fault domain?
+ * Region (West US, East US, etc.)
+ * Number of VM instances
+ * Size of VM instances (Small, Medium, Large)
+ * Pricing tier (Free, Shared, Basic, Standard, Premium, PremiumV2, PremiumV3, Isolated)
 
-A fault domain is a logical group of underlying hardware that share a common power source and network switch, similar to a rack within an on-premises datacenter. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these fault domains. This approach limits the impact of potential physical hardware failures, network outages, or power interruptions.
+The pricing tier of an App Service plan determines what App Service features you get and how much you pay for the plan. There are a few categories of pricing tiers:
 
-![alt text](images/provision_vm_01.png) 
+ * **Shared compute:** Both Free and Shared share the resource pools of your apps with the apps of other customers. These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources can't scale out.
+ * **Dedicated compute:** The Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. Only apps in the same App Service plan share the same compute resources. The higher the tier, the more VM instances are available to you for scale-out.
+ *  **Isolated:** This tier runs dedicated Azure VMs on dedicated Azure Virtual Networks. It provides network isolation on top of compute isolation to your apps. It provides the maximum scale-out capabilities.
+* **Consumption:** This tier is only available to function apps. It scales the functions dynamically depending on workload.
 
-### Update domains
+> **Note**: App Service Free and Shared (preview) hosting plans are base tiers that run on the same Azure virtual machines as other App Service apps. Some apps might belong to other customers. These tiers are intended to be used only for development and testing purposes.
 
-An update domain is a logical group of underlying hardware that can undergo maintenance or be rebooted at the same time. As you create VMs within an availability set, the Azure platform automatically distributes your VMs across these update domains. This approach ensures that at least one instance of your application always remains running as the Azure platform undergoes periodic maintenance. The order of update domains being rebooted may not proceed sequentially during planned maintenance, but only one update domain is rebooted at a time.
+### How does my app run and scale?
 
-![alt text](images/provision_vm_02.png)
+In the Free and Shared tiers, an app receives CPU minutes on a shared VM instance and can't scale out. In other tiers, an app runs and scales as follows:
 
-Each virtual machine in your availability set is assigned an update domain and a fault domain by the underlying Azure platform.
+ * An app runs on all the VM instances configured in the App Service plan.
+ * If multiple apps are in the same App Service plan, they all share the same VM instances.
+ * If you have multiple deployment slots for an app, all deployment slots also run on the same VM instances.
+ * If you enable diagnostic logs, perform backups, or run WebJobs, they also use CPU cycles and memory on these VM instances.
 
-For a given availability set, five non-user-configurable update domains are assigned by to indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.
+In this way, the App Service plan is the scale unit of the App Service apps. If the plan is configured to run five VM instances, then all apps in the plan run on all five instances. If the plan is configured for autoscaling, then all apps in the plan are scaled out together based on the autoscale settings.
 
-![alt text](images/provision_vm_03.png)
+### What if my app needs more capabilities or features?
 
-### What if my size needs change?
+Your App Service plan can be scaled up and down at any time. It is as simple as changing the pricing tier of the plan. If your app is in the same App Service plan with other apps, you may want to improve the app's performance by isolating the compute resources. You can do it by moving the app into a separate App Service plan.
 
-Azure allows you to change the VM size when the existing size no longer meets your needs. You can resize the VM - as long as your current hardware configuration is allowed in the new size. This provides a fully agile and elastic approach to VM management.
-If you stop and deallocate the VM, you can then select any size available in your region since this removes your VM from the cluster it was running on.
+You can potentially save money by putting multiple apps into one App Service plan. However, since apps in the same App Service plan all share the same compute resources you need to understand the capacity of the existing App Service plan and the expected load for the new app.
 
-**Caution:** Be cautious when resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
+Isolate your app into a new App Service plan when:
 
----
-<br>
+ * The app is resource-intensive.
+ * You want to scale the app independently from the other apps in the existing plan.
+ * The app needs resource in a different geographical region.
 
+This way you can allocate a new set of resources for your app and gain greater control of your apps.
+
+## Deploy to App Service
+
+Every development team has unique requirements that can make implementing an efficient deployment pipeline difficult on any cloud service. App Service supports both automated and manual deployment.
+
+### Automated deployment
+
+Automated deployment, or continuous deployment, is a process used to push out new features and bug fixes in a fast and repetitive pattern with minimal impact on end users.
+
+Azure supports automated deployment directly from several sources. The following options are available:
+
+ * Azure DevOps: You can push your code to Azure DevOps, build your code in the cloud, run the tests, generate a release from the code, and finally, push your code to an Azure Web App.
+ * GitHub: Azure supports automated deployment directly from GitHub. When you connect your GitHub repository to Azure for automated deployment, any changes you push to your production branch on GitHub will be automatically deployed for you.
+ * Bitbucket: With its similarities to GitHub, you can configure an automated deployment with Bitbucket.
+
+### Manual deployment
+
+There are a few options that you can use to manually push your code to Azure:
+
+ * Git: App Service web apps feature a Git URL that you can add as a remote repository. Pushing to the remote repository will deploy your app.
+ * CLI: webapp up is a feature of the az command-line interface that packages your app and deploys it. Unlike other deployment methods, az webapp up can create a new App Service web app for you if you haven't already created one.
+ * Zip deploy: Use curl or a similar HTTP utility to send a ZIP of your application files to App Service.
+ * FTP/S: FTP or FTPS is a traditional way of pushing your code to many hosting environments, including App Service.
+
+### Use deployment slots
+
+Whenever possible, use deployment slots when deploying a new production build. When using a Standard App Service Plan tier or better, you can deploy your app to a staging environment and then swap your staging and production slots. The swap operation warms up the necessary worker instances to match your production scale, thus eliminating downtime.
 
 ## Exercise: Create a static HTML web app by using Azure Cloud Shell
 ![alt text](images/provision_vm_04.png)
