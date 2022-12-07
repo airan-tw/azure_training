@@ -20,6 +20,8 @@ To edit a setting, click the **Edit** button on the right side.
 
 When finished, click **Update**. Don't forget to click Save back in the **Configuration page.**
 
+<br>
+
 ### Editing application settings in bulk
 
 To add or edit app settings in bulk, click the **Advanced** edit button. When finished, click **Update**. App settings have the following JSON formatting:
@@ -39,6 +41,8 @@ To add or edit app settings in bulk, click the **Advanced** edit button. When fi
   ...
 ]
 ```
+
+<br>
 
 ### Configure connection strings
 
@@ -63,6 +67,40 @@ Adding and editing connection strings follow the same principles as other app se
   ...
 ]
 ```
+
+<br>
+
+## Configure general settings
+
+In the **Configuration > General settings** section you can configure some common settings for your app. Some settings require you to scale up to higher pricing tiers.
+
+Below is a list of the currently available settings:
+
+![alt text](images/Config_app_service_03.png)
+
+<br>
+
+## Configure path mappings
+
+In the **Configuration > Path mappings** section you can configure handler mappings, and virtual application and directory mappings. **The Path mappings** page will display different options based on the OS type.
+
+![alt text](images/Config_app_service_04.png)
+
+<br>
+
+## Enable diagnostic logging
+There are built-in diagnostics to assist with debugging an App Service app. In this lesson, you will learn how to enable diagnostic logging and add instrumentation to your application, as well as how to access the information logged by Azure.
+
+The table below shows the types of logging, the platforms supported, and where the logs can be stored and located for accessing the information.
+
+![alt text](images/Config_app_service_05.png)
+
+### Enable application logging (Windows)
+
+1. To enable application logging for Windows apps in the Azure portal, navigate to your app and select **App Service logs.**
+2. Select **On** for either **Application Logging (Filesystem)** or **Application Logging (Blob)**, or both. The **Filesystem** option is for temporary debugging purposes, and turns itself off in 12 hours. The **Blob** option is for long-term logging, and needs a blob storage container to write logs to.
+3. You can also set the **Level** of details.
+4. When finished, select Save.
 
 ## Exercise: Create a static HTML web app by using Azure Cloud Shell
 
