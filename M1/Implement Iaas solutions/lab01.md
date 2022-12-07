@@ -1,12 +1,12 @@
-### Exercise 1: Create a VM by using the Azure Command-Line Interface (CLI)
+## Exercise 1: Create a VM by using the Azure Command-Line Interface (CLI)
 
-#### Task 1: Open the Azure portal
+### Task 1: Open the Azure portal
 
 1. In the open browser window, navigate to the Azure portal (<https://portal.azure.com>), and then sign in with the account you'll be using for this lab.
 
    > **Note**: If this is your first time signing in to the Azure portal, you'll be offered a tour of the portal. If you prefer to skip the tour, select **Get Started** to begin using the portal.
 
-#### Task 2: Create a resource group
+### Task 2: Create a resource group
 
 1.  On the Azure portal's navigation pane, use the **Search resources, services, and docs** text box to search for **Resource group**, and then in the list of results, select **Resource groups**.
 
@@ -44,7 +44,7 @@
     az --version
     ```
 
-#### Task 4: Use the Azure CLI commands
+### Task 4: Use the Azure CLI commands
 
 1.  Run the following command to get a list of subgroups and commands at the root level of the CLI:
 
@@ -139,6 +139,6 @@
 1.  Close the **Cloud Shell** pane in the portal.
 <br>
 
-### Review
+## Review
 
 In this exercise, you used Cloud Shell to create a VM as part of an automated script.
