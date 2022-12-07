@@ -96,10 +96,9 @@ cd $HOME/quickstart
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-3. Set variables to hold the resource group and app names by running the following commands.
+3. Set variable to hold the app names by running the following commands.
 
 ```azurecli-interactive
-resourceGroup=$(az group list --query "[].{id:name}" -o tsv)
 appName=az204app$RANDOM
 ```
 
@@ -110,7 +109,7 @@ appName=az204app$RANDOM
 ```azurecli-interactive
 cd html-docs-hello-world
 
-az webapp up -g $resourceGroup -n $appName --html
+az webapp up --location eastus -n $appName --html
 ```
 
 The az webapp up command does the following actions:
@@ -125,7 +124,7 @@ This command may take a few minutes to run. While running, it displays informati
 ```azurecli-interactive
 {
 "app_url": "https://<myAppName>.azurewebsites.net",
-"location": "westeurope",
+"location": "eastus",
 "name": "<app_name>",
 "os": "Windows",
 "resourcegroup": "<resource_group_name>",
@@ -135,6 +134,7 @@ This command may take a few minutes to run. While running, it displays informati
 < JSON data removed for brevity. >
 }
 ```
+> **Note**: Make a note of the `resourceGroup` value. You need it for the clean up resources section.
 
 2. Open a new tab in your browser and navigate to the app URL (`https://<myAppName>.azurewebsites.net`) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
 
