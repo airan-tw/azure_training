@@ -149,7 +149,7 @@ For logs stored in the App Service file system, the easiest way is to download t
 
  * Linux/container apps: `https://<app-name>.scm.azurewebsites.net/api/logs/docker/zip`
 
- * Windows apps: `https://<app-name>.scm.azurewebsites.net/api/dump``
+ * Windows apps: `https://<app-name>.scm.azurewebsites.net/api/dump`
 
 For Linux/container apps, the ZIP file contains console output logs for both the docker host and the docker container. For a scaled-out app, the ZIP file contains one set of logs for each instance. In the App Service file system, these log files are the contents of the /home/LogFiles directory.
 
@@ -164,3 +164,17 @@ A certificate uploaded into an app is stored in a deployment unit that is bound 
 The table below details the options you have for adding certificates in App Service:
 
 ![alt text](images/Config_app_service_06.png)
+
+### Enforce HTTPS
+
+By default, anyone can still access your app using HTTP. You can redirect all HTTP requests to the HTTPS port by navigating to your app page and, in the left navigation, select **TLS/SSL settings**. Then, in **HTTPS Only**, select **On**.
+
+![alt text](images/Config_app_service_07.png)
+
+<br>
+
+## Manage app features
+
+Feature management is a modern software-development practice that decouples feature release from code deployment and enables quick changes to feature availability on demand. It uses a technique called feature flags (also known as feature toggles, feature switches, and so on) to dynamically administer a feature's lifecycle.
+
+![alt text](images/Config_app_service_08.png)
