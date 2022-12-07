@@ -71,11 +71,11 @@ The `az webapp up` command makes it easy to create and update web apps. When exe
 ### Login to Azure and start the Cloud Shell
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
-![alt text](images/provision_vm_05.png)
+![alt text](images/azure_app_service_07.png)
 
 2. After the shell opens be sure to select the Bash environment.
 
-![alt text](images/provision_vm_06.png)
+![alt text](images/azure_app_service_08.png)
 
 
 ### Download the sample app
@@ -85,12 +85,12 @@ In this section you'll use the sandbox to download the sample app and set variab
 1. In the sandbox create a directory and then navigate to it.
 
 ```azurecli-interactive
-mkdir htmlapp
+mkdir quickstart
 
-cd htmlapp
+cd $HOME/quickstart
 ```
 
-2. Run the following `git` command to clone the sample app repository to your htmlapp directory.
+2. Run the following `git` command to clone the sample app repository to your quickstart directory.
 
 ```azurecli-interactive
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
@@ -113,6 +113,13 @@ cd html-docs-hello-world
 az webapp up -g $resourceGroup -n $appName --html
 ```
 
+The az webapp up command does the following actions:
+
+ * Create a default resource group.
+ * Create a default app service plan.
+ * Create an app with the specified name.
+ * Zip deploy files from the current working directory to the web app.
+
 This command may take a few minutes to run. While running, it displays information similar to the example below.
 
 ```azurecli-interactive
@@ -129,19 +136,9 @@ This command may take a few minutes to run. While running, it displays informati
 }
 ```
 
-### Install web server
-
-1. By default, only SSH connections are opened when you create a Linux VM in Azure. Use `az vm open-port` to open TCP port 80 for use with the NGINX web server:
-
-```azurecli-interactive
-az vm open-port --port 80 \
---resource-group az204-vm-rg \
---name az204vm
-```
-
 2. Open a new tab in your browser and navigate to the app URL (`https://<myAppName>.azurewebsites.net`) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
 
-> **Note**: You can copy `<myAppName>.azurewebsites.net` from the output of the previous command, or select the URL in the output to open the site in a new tab.
+![alt text](images/azure_app_service_09.png)
 
 ### Update and redeploy the app
 
@@ -157,16 +154,13 @@ az webapp up -g $resourceGroup -n $appName --html
 
 4. Once deployment is completed switch back to the browser from step 2 in the "Create the web app" section above and refresh the page.
 
-Use a web browser of your choice to view the default NGINX welcome page. Use the public IP address of your VM as the web address. The following example shows the default NGINX web site:
-
-![alt text](images/provision_vm_07.png)
 
 ### Clean up resources
 
 You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
 
 ```azurecli-interactive
-az group delete --name az204-vm-rg --no-wait
+az group delete --name $resourceGroup
 ```
 
 > **Note**: This operation takes on average 5 - 10 minutes
