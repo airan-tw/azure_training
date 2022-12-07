@@ -1,10 +1,6 @@
-## Lab scenario
+## Exercise 2: Create a Docker container image and deploy it to Azure Container Registry
 
-Your organization is seeking a way to 
-
-### Exercise 2: Create a Docker container image and deploy it to Azure Container Registry
-
-#### Task 1: Open the Cloud Shell and editor
+### Task 1: Open the Cloud Shell and editor
 
 1.  On the Azure portal's navigation pane, select the **Cloud Shell** icon to open a new shell instance.  
 
@@ -117,7 +113,7 @@ Your organization is seeking a way to
 
 1. Leave the Cloud Shell open for the next task.
 
-#### Task 3: Create a Container Registry resource
+### Task 3: Create a Container Registry resource
 
 1. At the **Cloud Shell** command prompt in the portal, run the following command to create a variable with a unique value for the Container Registry resource: 
 
@@ -141,7 +137,7 @@ Your organization is seeking a way to
 
     > **Note**: Wait for the creation task to complete before you continue with this lab.
 
-#### Task 4: Store Container Registry metadata
+### Task 4: Store Container Registry metadata
 
 1.  At the **Cloud Shell** command prompt in the portal, run the following command to get a list of all container registries in your subscription:
 
@@ -167,7 +163,7 @@ Your organization is seeking a way to
     echo $acrName
     ```
 
-#### Task 5: Deploy a Docker container image to Container Registry
+### Task 5: Deploy a Docker container image to Container Registry
 
 1.  Run the following command to change the active directory from **\~/** to **\~/clouddrive/ipcheck**:
 
@@ -191,7 +187,7 @@ Your organization is seeking a way to
 
 1.  Close the **Cloud Shell** pane in the portal.
 
-#### Task 6: Validate your container image in Container Registry
+### Task 6: Validate your container image in Container Registry
 
 1.  On the Azure portal's **navigation** pane, select the **Resource groups** link.
 
@@ -207,6 +203,6 @@ Your organization is seeking a way to
 
     > **Note**: You can also select the **Run ID** link to find metadata about the build task.
 
-### Review
+## Review
 
 In this exercise, you created a .NET console application to display a machine’s current IP address. You then added the **Dockerfile** file to the application so that it could be converted into a Docker container image. Finally, you deployed the container image to Container Registry.
