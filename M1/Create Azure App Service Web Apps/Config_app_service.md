@@ -20,8 +20,6 @@ To edit a setting, click the **Edit** button on the right side.
 
 When finished, click **Update**. Don't forget to click Save back in the **Configuration page.**
 
-<br>
-
 ### Editing application settings in bulk
 
 To add or edit app settings in bulk, click the **Advanced** edit button. When finished, click **Update**. App settings have the following JSON formatting:
@@ -41,8 +39,6 @@ To add or edit app settings in bulk, click the **Advanced** edit button. When fi
   ...
 ]
 ```
-
-<br>
 
 ### Configure connection strings
 
@@ -89,6 +85,7 @@ In the **Configuration > Path mappings** section you can configure handler mappi
 <br>
 
 ## Enable diagnostic logging
+
 There are built-in diagnostics to assist with debugging an App Service app. In this lesson, you will learn how to enable diagnostic logging and add instrumentation to your application, as well as how to access the information logged by Azure.
 
 The table below shows the types of logging, the platforms supported, and where the logs can be stored and located for accessing the information.
@@ -102,118 +99,68 @@ The table below shows the types of logging, the platforms supported, and where t
 3. You can also set the **Level** of details.
 4. When finished, select Save.
 
-## Exercise: Create a static HTML web app by using Azure Cloud Shell
+### Enable application logging (Linux/Container)
 
-![alt text](images/azure_app_service_06.png)
+1. In **Application logging**, select **File System**.
 
-In this exercise, you'll deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. You'll then update the code and redeploy it by using the same command.
+2. In **Quota (MB)**, specify the disk quota for the application logs. In **Retention Period (Days)**, set the number of days the logs should be retained.
 
-The `az webapp up` command makes it easy to create and update web apps. When executed it performs the following actions:
+3. When finished, select **Save**.
 
-* Create a default resource group if one isn't specified.
-* Create a default app service plan.
-* Create an app with the specified name.
-* Zip deploy files from the current working directory to the web app.
+### Enable web server logging
 
+1. In **App Service logs** set the **Application logging** option to **File System**.
 
-### Prerequisites
+2. In **Quota (MB)**, specify the disk quota for the application logs. In **Retention Period (Days)**, set the number of days the logs should be retained.
 
-  * An Azure account with an active subscription. If you don't already have one, [follow this instructions](https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit#heading=h.c96x7dxoz6ej).
-   
+3. When finished, select **Save**.
 
-### Login to Azure and start the Cloud Shell
-1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
+### Add log messages in code
 
-![alt text](images/azure_app_service_07.png)
+In your application code, you use the usual logging facilities to send log messages to the application logs. For example:
 
-2. After the shell opens be sure to select the Bash environment.
-
-![alt text](images/azure_app_service_08.png)
-
-
-### Download the sample app
-
-In this section you'll use the sandbox to download the sample app and set variables to make some of the commands easier to enter.
-
-1. In the sandbox create a directory and then navigate to it.
+ * ASP.NET applications can use the System.Diagnostics.Trace class to log information to the application diagnostics log. For example:
 
 ```azurecli-interactive
-mkdir quickstart
-
-cd $HOME/quickstart
+System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
 ```
 
-2. Run the following `git` command to clone the sample app repository to your quickstart directory.
+ * By default, ASP.NET Core uses the `Microsoft.Extensions.Logging.AzureAppServices` logging provider.
+
+### Stream logs
+
+Before you stream logs in real time, enable the log type that you want. Any information written to files ending in .txt, .log, or .htm that are stored in the `/LogFiles` directory (`d:/home/logfiles`) is streamed by App Service.
+
+* Azure Portal - To stream logs in the Azure portal, navigate to your app and select **Log stream**.
+
+* Azure CLI - To stream logs live in Cloud Shell, use the following command:
 
 ```azurecli-interactive
-git clone https://github.com/Azure-Samples/html-docs-hello-world.git
+az webapp log tail --name appname --resource-group myResourceGroup
 ```
 
-3. Set variable to hold the app names by running the following commands.
+* Local console - To stream logs in the local console, install Azure CLI and sign in to your account. Once signed in, follow the instructions for Azure CLI above.
 
-```azurecli-interactive
-appName=az204app$RANDOM
-```
+### Access log files
 
-### Create the web app
+If you configure the Azure Storage blobs option for a log type, you need a client tool that works with Azure Storage.
 
-1. Change to the directory that contains the sample code and run the `az webapp up` command.
+For logs stored in the App Service file system, the easiest way is to download the ZIP file in the browser at:
 
-```azurecli-interactive
-cd html-docs-hello-world
+ * Linux/container apps: `https://<app-name>.scm.azurewebsites.net/api/logs/docker/zip`
 
-az webapp up --location eastus -n $appName --html
-```
+ * Windows apps: `https://<app-name>.scm.azurewebsites.net/api/dump``
 
-The az webapp up command does the following actions:
+For Linux/container apps, the ZIP file contains console output logs for both the docker host and the docker container. For a scaled-out app, the ZIP file contains one set of logs for each instance. In the App Service file system, these log files are the contents of the /home/LogFiles directory.
 
- * Create a default resource group.
- * Create a default app service plan.
- * Create an app with the specified name.
- * Zip deploy files from the current working directory to the web app.
+<br>
 
-This command may take a few minutes to run. While running, it displays information similar to the example below.
+## Configure security certificates
 
-```azurecli-interactive
-{
-"app_url": "https://<myAppName>.azurewebsites.net",
-"location": "eastus",
-"name": "<app_name>",
-"os": "Windows",
-"resourcegroup": "<resource_group_name>",
-"serverfarm": "appsvc_asp_Windows_westeurope",
-"sku": "FREE",
-"src_path": "/home/<username>/demoHTML/html-docs-hello-world ",
-< JSON data removed for brevity. >
-}
-```
-> **Note**: Make a note of the `resourceGroup` value. You need it for the clean up resources section.
+You have been asked to help secure information being transmitted between your companies app and the customer. Azure App Service has tools that let you create, upload, or import a private certificate or a public certificate into App Service.
 
-2. Open a new tab in your browser and navigate to the app URL (`https://<myAppName>.azurewebsites.net`) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
+A certificate uploaded into an app is stored in a deployment unit that is bound to the app service plan's resource group and region combination (internally called a webspace). This makes the certificate accessible to other apps in the same resource group and region combination.
 
-![alt text](images/azure_app_service_09.png)
+The table below details the options you have for adding certificates in App Service:
 
-### Update and redeploy the app
-
-1.In the Cloud Shell, type `code index.html` to open the editor. In the `<h1>` heading tag, change Azure App Service - Sample Static HTML Site to Azure App Service Updated - or to anything else that you'd like.
-
-2. Use the commands ctrl-s to save and ctrl-q to exit.
-
-3. Redeploy the app with the same az webapp up command you used earlier.
-
-```azurecli-interactive
-az webapp up -g $resourceGroup -n $appName --html
-```
-
-4. Once deployment is completed switch back to the browser from step 2 in the "Create the web app" section above and refresh the page.
-
-
-### Clean up resources
-
-You can now safely delete the `az204-vm-rg` resource group from your account by running the command below.
-
-```azurecli-interactive
-az group delete --name <resource_group_name>
-```
-
-> **Note**: This operation takes on average 5 - 10 minutes
+![alt text](images/Config_app_service_06.png)
