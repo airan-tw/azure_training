@@ -1,4 +1,4 @@
-## Exercise 2: Create a Docker container image and deploy it to Azure Container Registry
+## Lab 02: Create a Docker container image and deploy it to Azure Container Registry
 
 ### Task 1: Open the Cloud Shell and editor
 
