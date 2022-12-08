@@ -15,6 +15,13 @@ Students will learn how Azure Blob storage works, how to manage data through the
 
 
 ## Hands-on Labs 
+
+### Labs Diagram
+
+![alt text](images/Lab04-Diagram.png)
+
+<br>
+
 * [Lab 01: Creating data store resources in Azure](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/lab01.md)
 * [Lab 02: Review and upload data](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/lab02.md)
 * [Lab 03: Configure a .NET web application](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/lab03.md)
