@@ -21,6 +21,6 @@ Students will learn how to leverage the Microsoft Identity Platform v2.0 to mana
 
 <br>
 
-* [Lab 01: Configure a single-tenant Azure AD environment](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/lab01.md)
-* [Lab 02: Create a single-tenant ASP.NET web app](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/lab02.md)
-* [Lab 03: Clean up your lab environment](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/lab05.md)
+* [Lab 01: Configure a single-tenant Azure AD environment](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/lab01.md)
+* [Lab 02: Create a single-tenant ASP.NET web app](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/lab02.md)
+* [Lab 03: Clean up your lab environment](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/lab03.md)
