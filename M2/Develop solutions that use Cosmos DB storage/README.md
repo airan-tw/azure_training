@@ -8,9 +8,9 @@ Students will learn how Cosmos DB is structured and how data consistency is mana
 
 ## Modules in this learning path:
 
-* [Azure Cosmos DB overview](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_overview.md)
-* [Azure Cosmos DB data structure](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_structure.md)
-* [Working with Azure Cosmos DB resources and data](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Working_cosmosdb.md)
+* [Explore Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_overview.md)
+* [Implement partitioning in Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_structure.md)
+* [Work with Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Working_cosmosdb.md)
 <br>
 
 
