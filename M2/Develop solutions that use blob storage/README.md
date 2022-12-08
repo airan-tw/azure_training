@@ -9,8 +9,8 @@ Students will learn how Azure Blob storage works, how to manage data through the
 * [Explore Azure Blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_concepts.md)
 * [Manage the Azure Blob storage lifecycle](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_lifecycle.md)
 * [Work with Azure Blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Working_blob_storage.md)
-<br>
 
+<br>
 
 ## Hands-on Labs 
 
