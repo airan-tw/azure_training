@@ -2,7 +2,7 @@
 
 ## About the module
 
-This module teaches students how to instrument their code for telemetry and how to analyze and troubleshoot their apps.
+Learn how to instrument apps to enable Application Insights to monitor performance and help troubleshoot issues.
 
 ## Modules in this learning path:
 
