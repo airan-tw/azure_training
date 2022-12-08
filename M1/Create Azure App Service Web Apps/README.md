@@ -2,7 +2,7 @@
 
 ## About the module
 
-This module Students will learn how to build a web application on the Azure App Service platform. They will learn how the platform functions and how to create, configure, scale, secure, and deploy to the App Service platform.
+Learn how Azure App Service functions and how to create and update an app. Explore App Service authentication and authorization, configuring app settings, scale apps, and how to use deployment slots.
 
 ## Modules in this learning path:
 
