@@ -4,7 +4,6 @@
 ## About the module
 
 Students will learn how Azure Blob storage works, how to manage data through the hot/cold/archive blob storage lifecycle, and how to use the Azure Blob storage client library to manage data and metadata.
-<br/>
 
 ## Modules in this learning path:
 
