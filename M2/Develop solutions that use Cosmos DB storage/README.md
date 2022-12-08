@@ -1,9 +1,9 @@
 # Develop solutions that use Cosmos DB storage
 
-
 ## About the module
 
-Students will learn how Azure Blob storage works, how to manage data through the hot/cold/archive blob storage lifecycle, and how to use the Azure Blob storage client library to manage data and metadata.
+Students will learn how Cosmos DB is structured and how data consistency is managed. Students will also learn how to create Cosmos DB accounts and create databases, containers, and items by using a mix of the Azure Portal and the .NET SDK.
+
 <br/>
 
 ## Modules in this learning path:
