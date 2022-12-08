@@ -15,7 +15,7 @@ An Azure virtual machine gives you the flexibility of virtualization without hav
 * **VM limits:** Your subscription has default quota limits in place that could impact the deployment of many VMs for your project.
 * **VM image:** You can either use your own image, or you can use one of the images in the Azure Marketplace.
 * **VM disks:** There are two components that make up this area. The type of disks which determines the performance level and the storage account type that contains the disks. Azure provides two types of disks:
-   * **Standard disks:** Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
+    * **Standard disks:** Backed by HDDs, and delivers cost-effective storage while still being performant. Standard disks are ideal for a cost effective dev and test workload.
     * **Premium disks:** Backed by SSD-based, high-performance, low-latency disk. Perfect for VMs running production workload.
     
       And, there are two options for the disk storage:
