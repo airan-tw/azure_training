@@ -2,15 +2,7 @@
 
 Autoscaling can be triggered according to a schedule, or by assessing whether the system is running short on resources. For example, autoscaling could be triggered if CPU utilization grows, memory occupancy increases, the number of incoming requests to a service appears to be surging, or some combination of factors.
 
-### What is autoscaling?
-
-Autoscaling is a cloud system or process that adjusts available resources based on the current demand. Autoscaling performs scaling in and out, as opposed to scaling up and down.
-
-### Azure App Service Autoscaling
-
-Autoscaling in Azure App Service monitors the resource metrics of a web app as it runs. It detects situations where additional resources are required to handle an increasing workload, and ensures those resources are available before the system becomes overloaded.
-
-Autoscaling responds to changes in the environment by adding or removing web servers and balancing the load between them. Autoscaling doesn't have any effect on the CPU power, memory, or storage capacity of the web servers powering the app, it only changes the number of web servers.
+![alt text](images/Scale_app_01.png)
 
 ### Autoscaling rules
 
@@ -18,178 +10,79 @@ Autoscaling makes its decisions based on rules that you define. A rule specifies
 
 Define your autoscaling rules carefully. For example, a Denial of Service attack will likely result in a large-scale influx of incoming traffic. Trying to handle a surge in requests caused by a DoS attack would be fruitless and expensive. These requests aren't genuine, and should be discarded rather than processed. A better solution is to implement detection and filtering of requests that occur during such an attack before they reach your service.
 
+<br>
 
-![alt text](images/Config_app_service_01.png)
+## Identify autoscale factors
 
-For ASP.NET and ASP.NET Core developers, setting app settings in App Service are like setting them in `<appSettings>` in Web.config or appsettings.json, but the values in App Service override the ones in Web.config or appsettings.json. You can keep development settings (for example, local MySQL password) in Web.config or appsettings.json, but production secrets (for example, Azure MySQL database password) safe in App Service. The same code uses your development settings when you debug locally, and it uses your production secrets when deployed to Azure.
+Autoscaling enables you to specify the conditions under which a web app should be scaled out, and back in again. Effective autoscaling ensures sufficient resources are available to handle large volumes of requests at peak times, while managing costs when the demand drops.
 
-App settings are always encrypted when stored (encrypted-at-rest).
+![alt text](images/Scale_app_02.png)
 
-### Adding and editing settings
+### Autoscale conditions
 
-To add a new app setting, click **New application setting**. If you are using deployment slots you can specify if your setting is swappable or not. In the dialog, you can stick the setting to the current slot.
+You indicate how to autoscale by creating autoscale conditions. Azure provides two options for autoscaling:
 
-![alt text](images/Config_app_service_02.png)
+ * Scale based on a metric, such as the length of the disk queue, or the number of HTTP requests awaiting processing.
+ * Scale to a specific instance count according to a schedule. For example, you can arrange to scale out at a particular time of day, or on a specific date or day of the week. You also specify an end date, and the system will scale back in at this time.
 
-To edit a setting, click the **Edit** button on the right side.
+### Metrics for autoscale rules
 
-When finished, click **Update**. Don't forget to click Save back in the **Configuration page.**
+Autoscaling by metric requires that you define one or more autoscale rules. An autoscale rule specifies a metric to monitor, and how autoscaling should respond when this metric crosses a defined threshold. The metrics you can monitor for a web app are:
 
-### Editing application settings in bulk
+ * **CPU Percentage**. This metric is an indication of the CPU utilization across all instances. A high value shows that instances are becoming CPU-bound, which could cause delays in processing client requests.
+ * **Memory Percentage**. This metric captures the memory occupancy of the application across all instances. A high value indicates that free memory could be running low, and could cause one or more instances to fail.
+ * **Disk Queue Length**. This metric is a measure of the number of outstanding I/O requests across all instances. A high value means that disk contention could be occurring.
+ * **Http Queue Length**. This metric shows how many client requests are waiting for processing by the web app. If this number is large, client requests might fail with HTTP 408 (Timeout) errors.
+ * **Data In**. This metric is the number of bytes received across all instances.
+ * **Data Out**. This metric is the number of bytes sent by all instances.
 
-To add or edit app settings in bulk, click the **Advanced** edit button. When finished, click **Update**. App settings have the following JSON formatting:
+### Combining autoscale rules
 
-```azurecli-interactive
-[
-  {
-    "name": "<key-1>",
-    "value": "<value-1>",
-    "slotSetting": false
-  },
-  {
-    "name": "<key-2>",
-    "value": "<value-2>",
-    "slotSetting": false
-  },
-  ...
-]
-```
+A single autoscale condition can contain several autoscale rules (for example, a scale-out rule and the corresponding scale-in rule). However, the autoscale rules in an autoscale condition don't have to be directly related. You could define the following four rules in the same autoscale condition:
 
-### Configure connection strings
-
-For ASP.NET and ASP.NET Core developers, the values you set in App Service override the ones in Web.config. For other language stacks, it's better to use app settings instead, because connection strings require special formatting in the variable keys in order to access the values. Connection strings are always encrypted when stored (encrypted-at-rest).
-
-Adding and editing connection strings follow the same principles as other app settings and they can also be tied to deployment slots. Below is an example of connection strings in JSON formatting that you would use for bulk adding or editing.
-
-```azurecli-interactive
-[
-  {
-    "name": "name-1",
-    "value": "conn-string-1",
-    "type": "SQLServer",
-    "slotSetting": false
-  },
-  {
-    "name": "name-2",
-    "value": "conn-string-2",
-    "type": "PostgreSQL",
-    "slotSetting": false
-  },
-  ...
-]
-```
+ * If the HTTP queue length exceeds 10, scale out by 1
+ * If the CPU utilization exceeds 70%, scale out by 1
+ * If the HTTP queue length is zero, scale in by 1
+ * If the CPU utilization drops below 50%, scale in by 1
 
 <br>
 
-## Configure general settings
+## Enable autoscale in App Service
 
-In the **Configuration > General settings** section you can configure some common settings for your app. Some settings require you to scale up to higher pricing tiers.
+To get started with autoscaling navigate to your App Service plan in the Azure portal and select Scale out (App Service plan) in the Settings group in the left navigation pane.
 
-Below is a list of the currently available settings:
+By default, an App Service Plan only implements manual scaling. Selecting **Custom autoscale** reveals condition groups you can use to manage your scale settings.
 
-![alt text](images/Config_app_service_03.png)
+![alt text](images/Scale_app_03.png)
 
-<br>
+### Add scale conditions
 
-## Configure path mappings
+Once you enable autoscaling, you can edit the automatically created default scale condition, and you can add your own custom scale conditions. Remember that each scale condition can either scale based on a metric, or scale to a specific instance count.
 
-In the **Configuration > Path mappings** section you can configure handler mappings, and virtual application and directory mappings. **The Path mappings** page will display different options based on the OS type.
+The Default scale condition is executed when none of the other scale conditions are active.
 
-![alt text](images/Config_app_service_04.png)
+![alt text](images/Scale_app_04.png)
 
-<br>
+A metric-based scale condition can also specify the minimum and maximum number of instances to create. The maximum number can't exceed the limits defined by the pricing tier. Additionally, all scale conditions other than the default may include a schedule indicating when the condition should be applied.
 
-## Enable diagnostic logging
+### Create scale rules
 
-There are built-in diagnostics to assist with debugging an App Service app. In this lesson, you will learn how to enable diagnostic logging and add instrumentation to your application, as well as how to access the information logged by Azure.
+A metric-based scale condition contains one or more scale rules. You use the **Add a rule** link to add your own custom rules. You define the criteria that indicate when a rule should trigger an autoscale action, and the autoscale action to be performed (scale out or scale in) using the metrics, aggregations, operators, and thresholds described earlier.
 
-The table below shows the types of logging, the platforms supported, and where the logs can be stored and located for accessing the information.
+![alt text](images/Scale_app_05.png)
 
-![alt text](images/Config_app_service_05.png)
+### Monitor autoscaling activity
 
-### Enable application logging (Windows)
+The Azure portal enables you to track when autoscaling has occurred through the **Run history** chart. This chart shows how the number of instances varies over time, and which autoscale conditions caused each change.
 
-1. To enable application logging for Windows apps in the Azure portal, navigate to your app and select **App Service logs.**
-2. Select **On** for either **Application Logging (Filesystem)** or **Application Logging (Blob)**, or both. The **Filesystem** option is for temporary debugging purposes, and turns itself off in 12 hours. The **Blob** option is for long-term logging, and needs a blob storage container to write logs to.
-3. You can also set the **Level** of details.
-4. When finished, select Save.
+![alt text](images/Scale_app_06.png)
 
-### Enable application logging (Linux/Container)
+You can use the **Run history** chart in conjunction with the metrics shown on the **Overview** page to correlate the autoscaling events with resource utilization.
 
-1. In **Application logging**, select **File System**.
-
-2. In **Quota (MB)**, specify the disk quota for the application logs. In **Retention Period (Days)**, set the number of days the logs should be retained.
-
-3. When finished, select **Save**.
-
-### Enable web server logging
-
-1. In **App Service logs** set the **Application logging** option to **File System**.
-
-2. In **Quota (MB)**, specify the disk quota for the application logs. In **Retention Period (Days)**, set the number of days the logs should be retained.
-
-3. When finished, select **Save**.
-
-### Add log messages in code
-
-In your application code, you use the usual logging facilities to send log messages to the application logs. For example:
-
- * ASP.NET applications can use the System.Diagnostics.Trace class to log information to the application diagnostics log. For example:
-
-```azurecli-interactive
-System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happened");
-```
-
- * By default, ASP.NET Core uses the `Microsoft.Extensions.Logging.AzureAppServices` logging provider.
-
-### Stream logs
-
-Before you stream logs in real time, enable the log type that you want. Any information written to files ending in .txt, .log, or .htm that are stored in the `/LogFiles` directory (`d:/home/logfiles`) is streamed by App Service.
-
-* Azure Portal - To stream logs in the Azure portal, navigate to your app and select **Log stream**.
-
-* Azure CLI - To stream logs live in Cloud Shell, use the following command:
-
-```azurecli-interactive
-az webapp log tail --name appname --resource-group myResourceGroup
-```
-
-* Local console - To stream logs in the local console, install Azure CLI and sign in to your account. Once signed in, follow the instructions for Azure CLI above.
-
-### Access log files
-
-If you configure the Azure Storage blobs option for a log type, you need a client tool that works with Azure Storage.
-
-For logs stored in the App Service file system, the easiest way is to download the ZIP file in the browser at:
-
- * Linux/container apps: `https://<app-name>.scm.azurewebsites.net/api/logs/docker/zip`
-
- * Windows apps: `https://<app-name>.scm.azurewebsites.net/api/dump`
-
-For Linux/container apps, the ZIP file contains console output logs for both the docker host and the docker container. For a scaled-out app, the ZIP file contains one set of logs for each instance. In the App Service file system, these log files are the contents of the /home/LogFiles directory.
+![alt text](images/Scale_app_07.png)
 
 <br>
 
-## Configure security certificates
+## Autoscale best practices
 
-You have been asked to help secure information being transmitted between your companies app and the customer. Azure App Service has tools that let you create, upload, or import a private certificate or a public certificate into App Service.
-
-A certificate uploaded into an app is stored in a deployment unit that is bound to the app service plan's resource group and region combination (internally called a webspace). This makes the certificate accessible to other apps in the same resource group and region combination.
-
-The table below details the options you have for adding certificates in App Service:
-
-![alt text](images/Config_app_service_06.png)
-
-### Enforce HTTPS
-
-By default, anyone can still access your app using HTTP. You can redirect all HTTP requests to the HTTPS port by navigating to your app page and, in the left navigation, select **TLS/SSL settings**. Then, in **HTTPS Only**, select **On**.
-
-![alt text](images/Config_app_service_07.png)
-
-<br>
-
-## Manage app features
-
-Feature management is a modern software-development practice that decouples feature release from code deployment and enables quick changes to feature availability on demand. It uses a technique called feature flags (also known as feature toggles, feature switches, and so on) to dynamically administer a feature's lifecycle.
-
-![alt text](images/Config_app_service_08.png)
+![alt text](images/Scale_app_08.png)
