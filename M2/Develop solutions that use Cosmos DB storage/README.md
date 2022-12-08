@@ -4,15 +4,13 @@
 
 Students will learn how Cosmos DB is structured and how data consistency is managed. Students will also learn how to create Cosmos DB accounts and create databases, containers, and items by using a mix of the Azure Portal and the .NET SDK.
 
-<br/>
-
 ## Modules in this learning path:
 
 * [Explore Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_overview.md)
 * [Implement partitioning in Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Cosmosdb_structure.md)
 * [Work with Azure Cosmos DB](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20Cosmos%20DB%20storage/Working_cosmosdb.md)
-<br>
 
+<br>
 
 ## Hands-on Labs 
 
