@@ -2,7 +2,7 @@
 
 ## About the module
 
-Students will learn how to leverage the Microsoft Identity Platform v2.0 to manage authentication and access to resources. Students will also learn how to use the Microsoft Authentication Library and Microsoft Graph to authenticate a user and retrieve information stored in Azure, and how and when to use Shared Access Signatures.
+Learn how to implement authentication and authorization to resources by using the Microsoft identity platform, Microsoft Authentication Library, shared access signatures, and use Microsoft Graph.
 
 ## Modules in this learning path:
 
