@@ -16,6 +16,10 @@ This module Students will learn how to build a web application on the Azure App 
 
 
 ## Hands-on Labs 
+
+### Labs Diagram
+![alt text](images/Lab01-Diagram.png)
+<br>
 * [Lab 01: Build a backend API by using Azure Storage and the Web Apps feature of Azure App Service](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/lab01.md)
 * [Lab 02: Build a front-end web application by using Azure Web Apps](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/lab02.md)
 * [Lab 03: Clean up your subscription](https://github.com/airan-tw/azure_training/blob/main/M1/Create%20Azure%20App%20Service%20Web%20Apps/lab03.md)
