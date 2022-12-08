@@ -1,15 +1,14 @@
 # Develop solutions that use blob storage
 
-
 ## About the module
 
 Students will learn how Azure Blob storage works, how to manage data through the hot/cold/archive blob storage lifecycle, and how to use the Azure Blob storage client library to manage data and metadata.
 
 ## Modules in this learning path:
 
-* [Azure Blob storage core concepts](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_concepts.md)
-* [Managing the Azure Blob storage lifecycle](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_lifecycle.md)
-* [Working with Azure Blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Working_blob_storage.md)
+* [Explore Azure Blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_concepts.md)
+* [Manage the Azure Blob storage lifecycle](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_lifecycle.md)
+* [Work with Azure Blob storage](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Working_blob_storage.md)
 <br>
 
 
