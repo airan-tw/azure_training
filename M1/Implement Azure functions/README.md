@@ -2,7 +2,7 @@
 
 ## About the module
 
-This module covers creating Functions apps, and how to integrate triggers and inputs/outputs in to the app.
+Learn how to create and deploy Azure Functions. Explore hosting options, bindings, triggers, and how to use Durable Functions to define stateful workflows.
 
 ## Modules in this learning path:
 
