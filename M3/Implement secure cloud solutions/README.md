@@ -9,8 +9,8 @@ Students will learn how to leverage the Microsoft Identity Platform v2.0 to mana
 * [Implement Azure Key Vault](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20secure%20cloud%20solutions/Implement_key_vault.md)
 * [Implement managed identities](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20secure%20cloud%20solutions/Implement_identities.md)
 * [Implement Azure App Configuration](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20secure%20cloud%20solutions/Implement_app_config.md)
-<br>
 
+<br>
 
 ## Hands-on Labs 
 
