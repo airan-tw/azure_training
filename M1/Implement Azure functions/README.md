@@ -14,12 +14,12 @@ This module covers creating Functions apps, and how to integrate triggers and in
 
 <br>
 
-
 ## Hands-on Labs 
 
 ### Labs Diagram
 
 ![alt text](images/azure_functions_01.png)
+
 <br>
 
 * [Lab 01: Create Azure resources](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Azure%20functions/lab01.md)
