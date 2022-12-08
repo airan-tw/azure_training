@@ -1,4 +1,3 @@
-
 # Integrate caching and content delivery within solutions
 
 ## About the module
