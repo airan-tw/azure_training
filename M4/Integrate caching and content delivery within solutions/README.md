@@ -2,7 +2,7 @@
 
 ## About the module
 
-Students will learn how to use different caching services to improve the performance of their apps.
+Learn how to improve the performance and scalability of your applications by integrating Azure Cache for Redis and Azure Content Delivery Network in to your solution.
 
 ## Modules in this learning path:
 
