@@ -4,8 +4,6 @@
 
 This module covers creating Functions apps, and how to integrate triggers and inputs/outputs in to the app.
 
-<br/>
-
 ## Modules in this learning path:
 
 * [Explore Azure Functions](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Azure%20functions/Azure_functions.md)
