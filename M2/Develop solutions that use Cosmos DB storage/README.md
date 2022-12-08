@@ -2,7 +2,7 @@
 
 ## About the module
 
-Students will learn how Cosmos DB is structured and how data consistency is managed. Students will also learn how to create Cosmos DB accounts and create databases, containers, and items by using a mix of the Azure Portal and the .NET SDK.
+Learn how to create Azure Cosmos DB resources with the appropriate consistency levels, choose and create a partition key, and perform data operations by using the .NET SDK V3 for Azure Cosmos DB.
 
 ## Modules in this learning path:
 
