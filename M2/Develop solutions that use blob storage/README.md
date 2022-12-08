@@ -18,7 +18,7 @@ Students will learn how Azure Blob storage works, how to manage data through the
 
 ### Labs Diagram
 
-![alt text](images/Lab04-Diagram.png)
+![alt text](images/Lab03-Diagram.png)
 
 <br>
 
