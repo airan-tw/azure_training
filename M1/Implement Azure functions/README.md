@@ -1,5 +1,4 @@
-# Implement Iaas solutions
-
+# Implement Azure functions
 
 ## About the module
 
