@@ -6,7 +6,7 @@ Students will learn how to leverage the Microsoft Identity Platform v2.0 to mana
 
 ## Modules in this learning path:
 
-* [Explore the Microsoft identity platform](https://github.com/airan-tw/azure_training/blob/main/M2/Develop%20solutions%20that%20use%20blob%20storage/Blob_storage_concepts.md)
+* [Explore the Microsoft identity platform](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Implement_auth.md)
 * [Implement authentication by using the Microsoft Authentication Library](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Microsoft_id_platform.md)
 * [Implement shared access signatures](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Implement_shared_access.md)
 * [Explore Microsoft Graph](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Microsoft_graph.md)
