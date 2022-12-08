@@ -10,8 +10,8 @@ Students will learn how to leverage the Microsoft Identity Platform v2.0 to mana
 * [Implement authentication by using the Microsoft Authentication Library](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Microsoft_id_platform.md)
 * [Implement shared access signatures](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Implement_shared_access.md)
 * [Explore Microsoft Graph](https://github.com/airan-tw/azure_training/blob/main/M3/Implement%20use%20authentication%20and%20authorization/Microsoft_graph.md)
-<br>
 
+<br>
 
 ## Hands-on Labs 
 
