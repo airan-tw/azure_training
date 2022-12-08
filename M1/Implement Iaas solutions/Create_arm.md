@@ -17,9 +17,7 @@ The following image shows the role Azure Resource Manager plays in handling Azur
 If you're trying to decide between using Azure Resource Manager templates and one of the other infrastructure as code services, consider the following advantages of using templates:
 
    * **Declarative syntax:** Azure Resource Manager templates allow you to create and deploy an entire Azure infrastructure declaratively. For example, you can deploy not only virtual machines, but also the network infrastructure, storage systems, and any other resources you may need.
-
    * **Repeatable results:** Repeatedly deploy your infrastructure throughout the development lifecycle and have confidence your resources are deployed in a consistent manner. Templates are idempotent, which means you can deploy the same template many times and get the same resource types in the same state. You can develop one template that represents the desired state, rather than developing lots of separate templates to represent updates.
-
    * **Orchestration:** You don't have to worry about the complexities of ordering operations. Resource Manager orchestrates the deployment of interdependent resources so they're created in the correct order. When possible, Resource Manager deploys resources in parallel so your deployments finish faster than serial deployments. You deploy the template through one command, rather than through multiple imperative commands.
    
 ### Template file
@@ -29,13 +27,9 @@ Within your template, you can write template expressions that extend the capabil
 The template has the following sections:
 
    * Parameters - Provide values during deployment that allow the same template to be used with different environments.
-
    * Variables - Define values that are reused in your templates. They can be constructed from parameter values.
-
    * User-defined functions - Create customized functions that simplify your template.
-
    * Resources- Specify the resources to deploy.
-
    * Outputs - Return values from the deployed resources.
 
 
