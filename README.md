@@ -10,18 +10,15 @@ The objective of this course is to teach developers how to create end-to-end sol
 
 - **Azure Account** (https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit)
 - **Azure Devops Account** (https://docs.google.com/document/d/12tL1KMNMq3IPNkeSPOVNTpzk0irfMFLNu68BLeUn-sI/edit?usp=sharing)
-- **[Download Latest Student Handbook and AllFiles Content](../../releases/latest)**
-- **Need to manually build the lab instructions?** - Instructions are available in the [MicrosoftLearning/Docker-Build](https://github.com/MicrosoftLearning/Docker-Build) repository
 
 ## About the AZ-204 Course
 
 This course should help you understand what to expect on the exam and includes a summary of the topics the exam might cover and links to additional resources.
 
-
 Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
-
 ![alt text](images/az204_skills.png)
+
 <br>
 
 ## Develop Azure compute solutions (25-30%)
@@ -45,7 +42,8 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
   * Implement input and output bindings for a function
   * Implement function triggers by using data operations, timers, and webhooks
   * Implement Azure Durable Functions
- <br>
+
+<br>
 
 ## Develop for Azure storage (10-15%)
 
@@ -63,6 +61,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
   * Set and retrieve properties and metadata
   * Interact with data using the appropriate SDK
   * Implement data archiving and retention
+
 <br>
 
 ## Implement Azure security (15-20%)
@@ -78,6 +77,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
   * Secure app configuration data by using the App Configuration and KeyVault API
   * Manage keys, secrets, and certificates by using the KeyVault API
   * Implement Managed Identities for Azure resources
+
 <br>
 
 ## Monitor, troubleshoot, and optimize Azure solutions (10-15%)
@@ -94,6 +94,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
   * Analyze and troubleshoot solutions by using Azure Monitor
   * Implement Application Insights Web Test and Alerts
   * Implement code that handles transient faults
+
 <br>
 
 ## Connect to and consume Azure services and third-party services (25-30%)
@@ -120,4 +121,3 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
   * Implement solutions that use Azure Service Bus
   * Implement solutions that use Azure Queue Storage queues
-<br>
