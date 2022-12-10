@@ -1,4 +1,4 @@
-## Exercise 1: Configure a single-tenant Azure AD environment
+## Lab 1: Configure a single-tenant Azure AD environment
 
 ### Task 1: Open the Azure portal
 
