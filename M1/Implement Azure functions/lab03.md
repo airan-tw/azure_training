@@ -1,4 +1,4 @@
-## Exercise 3: Create a function that's triggered by an HTTP request
+## Lab 3: Create a function that's triggered by an HTTP request
 
 ### Task 1: Create an HTTP-triggered function
 
