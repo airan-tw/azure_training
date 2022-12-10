@@ -42,7 +42,7 @@
     code .
     ```
 
-#### Task 2: Create and test a .NET application
+### Task 2: Create and test a .NET application
 
 1.  In the graphical editor, on the **FILES** pane, select the **Program.cs** file to open it in the editor.
 
