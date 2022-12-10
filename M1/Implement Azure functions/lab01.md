@@ -1,4 +1,4 @@
-## Exercise 1: Create Azure resources
+## Lab 1: Create Azure resources
 
 ### Task 1: Open the Azure portal
 
