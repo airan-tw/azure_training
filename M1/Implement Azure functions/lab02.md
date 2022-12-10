@@ -1,4 +1,4 @@
-## Exercise 2: Configure a local Azure Functions project
+## Lab 2: Configure a local Azure Functions project
 
 ### Task 1: Initialize a function project
 
