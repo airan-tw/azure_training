@@ -1,4 +1,4 @@
-## Exercise 5: Create a function that integrates with other services
+## Lab 5: Create a function that integrates with other services
 
 ### Task 1: Upload sample content to Azure Blob Storage
 
