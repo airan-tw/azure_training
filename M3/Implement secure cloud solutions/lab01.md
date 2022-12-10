@@ -27,7 +27,7 @@
 
    The following screenshot displays the configured settings on the **Create a storage account** blade.
 
-   ![Screenshot displaying the configured settings on the Create a storage account blade](./media/l07_create_a_storage_account.png)
+   ![Screenshot displaying the configured settings on the Create a storage account blade](images/l07_create_a_storage_account.png)
 
 1. On the **Review** tab, review the options that you selected during the previous steps.
 
@@ -63,7 +63,7 @@
 
    The following screenshot displays the configured settings on the **Create key vault** blade.
 
-   ![Screenshot displaying the configured settings on the Create key vault blade](./media/l07_create_key_vault.png)
+   ![Screenshot displaying the configured settings on the Create key vault blade](images/l07_create_key_vault.png)
 
 1. On the **Review + create** tab, review the options that you selected during the previous steps.
 
@@ -93,7 +93,7 @@
 
     The following screenshot displays the configured settings in the **Create Function App** blade.
 
-    ![Screenshot displaying the configured settings on the Create Function App blade](./media/l07_create_function_app.png)
+    ![Screenshot displaying the configured settings on the Create Function App blade](images/l07_create_function_app.png)
 
 1. On the **Hosting** tab, perform the following actions, and then select **Review + create**:
 
