@@ -30,7 +30,7 @@
 
     > **Note**: Wait for the creation task to complete before moving forward with this lab.
 
-#### Task 3: Open Azure Cloud Shell
+### Task 3: Open Azure Cloud Shell
 
 1.  In the Azure portal, select the **Cloud Shell** icon ![alt text](images/az204_lab_CloudShell.png) to open a new PowerShell session. If Cloud Shell defaults to a PowerShell session, select **PowerShell**, and then in the drop-down menu, select **Bash**.
 
