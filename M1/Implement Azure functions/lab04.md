@@ -1,4 +1,4 @@
-## Exercise 4: Create a function that triggers on a schedule
+## Lab 4: Create a function that triggers on a schedule
 
 ### Task 1: Create a schedule-triggered function
 
