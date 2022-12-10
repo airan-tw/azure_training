@@ -1,4 +1,4 @@
-## Exercise 2: Build a front-end web application by using Azure Web Apps
+## Lab 2: Build a front-end web application by using Azure Web Apps
 
 ### Task 1: Create a web app
 
