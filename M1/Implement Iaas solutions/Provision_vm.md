@@ -50,6 +50,7 @@ Azure offers several options for ensuring the availability of the virtual machin
 * Composed of two additional groupings that protect against hardware failures and allow updates to safely be applied - fault domains (FDs) and update domains (UDs).
 
 ### VM scale sets
+
 * Visit https://docs.microsoft.com/azure/virtual-machine-scale-sets/overview?context=/azure/virtual-machines/context/context
 
 ### Load balancer
@@ -87,6 +88,7 @@ If you stop and deallocate the VM, you can then select any size available in you
 <br>
 
 ## Exercise: Create a virtual machine by using the Azure CLI
+
 ![alt text](images/provision_vm_04.png)
 
 In this exercise you'll create a Linux virtual machine by performing the following operations using Azure CLI commands:
@@ -102,6 +104,7 @@ In this exercise you'll create a Linux virtual machine by performing the followi
    
 
 ### Login to Azure and start the Cloud Shell
+
 1. Login to the [Azure Portal](https://portal.azure.com/) and open the Cloud Shell.
 
 ![alt text](images/provision_vm_05.png)
@@ -114,7 +117,6 @@ In this exercise you'll create a Linux virtual machine by performing the followi
 ### Create a resource group and virtual machine
 
 1. Create a resource group with the `az group create` command. The command below creates a resource group named az204-vm-rg. 
-
 
 ```azurecli-interactive
 az group create --name az204-vm-rg --location eastus
