@@ -45,7 +45,7 @@
 
 1. Open Notepad, and then paste the copied connection string value to Notepad. You'll use this value later in this lab.
 
-#### Task 3: Upload a sample blob
+### Task 3: Upload a sample blob
 
 1. On the **Storage Account** blade, in the **Data storage** section, select the **Containers** link.
 
@@ -72,7 +72,7 @@
 
     > **Note**: Wait for the blob to upload before you continue with this lab.
 
-#### Task 4: Create a web app
+### Task 4: Create a web app
 
 1. On the Azure portal's navigation pane, select **Create a resource**.
 
@@ -110,7 +110,7 @@
 
 1. On the **Overview** blade, select the **Go to resource** button to navigate to the blade of the newly created web app.
 
-#### Task 5: Configure the web app
+### Task 5: Configure the web app
 
 1. On the **App Service** blade, in the **Settings** section, select the **Configuration** link.
 
@@ -131,7 +131,7 @@
 
     > **Note**: At this point, the web server at this URL will return a placeholder webpage. You haven't deployed any code to the Web App yet. You'll deploy code to the Web App later in this lab.
 
-#### Task 6: Deploy an `ASP.NET` web application to Web Apps
+### Task 6: Deploy an `ASP.NET` web application to Web Apps
 
 1. On the taskbar, select the **Visual Studio Code** icon.
 
