@@ -160,3 +160,69 @@ var app = PublicClientApplicationBuilder
 | --- | --- |
 | `.Create` | Creates a `PublicClientApplicationBuilder` from a clientID.|
 |`.WithAuthority`		| Adds a known Authority corresponding to an ADFS server. In the code we're specifying the Public cloud, and using the tenant for the app we registered.|
+
+### Acquire a token
+
+When you registered the az204appreg app it automatically generated an API permission user.read for Microsoft Graph. We'll use that permission to acquire a token.
+
+1. Set the permission scope for the token request. Add the following code below the `PublicClientApplicationBuilder`.
+
+```azurecli-interactive
+string[] scopes = { "user.read" };
+```
+
+2. Add code to request the token and write the result out to the console.
+
+```azurecli-interactive
+AuthenticationResult result = await app.AcquireTokenInteractive(scopes).ExecuteAsync();
+
+Console.WriteLine($"Token:\t{result.AccessToken}");
+```
+
+### Review completed application
+
+The contents of the Program.cs file should resemble the example below.
+
+```azurecli-interactive
+using System;
+using System.Threading.Tasks;
+using Microsoft.Identity.Client;
+
+namespace az204_auth
+{
+    class Program
+    {
+        private const string _clientId = "APPLICATION_CLIENT_ID";
+        private const string _tenantId = "DIRECTORY_TENANT_ID";
+
+        public static async Task Main(string[] args)
+        {
+            var app = PublicClientApplicationBuilder
+                .Create(_clientId)
+                .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
+                .WithRedirectUri("http://localhost")
+                .Build(); 
+            string[] scopes = { "user.read" };
+            AuthenticationResult result = await app.AcquireTokenInteractive(scopes).ExecuteAsync();
+
+            Console.WriteLine($"Token:\t{result.AccessToken}");
+        }
+    }
+}
+```
+
+### Run the application
+
+1. In the VS Code terminal run `dotnet build` to check for errors, then `dotnet run` to run the app.
+
+2. The app will open the default browser prompting you to select the account you want to authenticate with. If there are multiple accounts listed select the one associated with the tenant used in the app.
+
+3. If this is the first time you've authenticated to the registered app you will receive a **Permissions requested** notification asking you to approve the app to read data associated with your account. Select Accept.
+
+![alt text](images/auth_library_06.png)
+
+4. You should see the results similar to the example below in the console.
+
+```azurecli-interactive
+Token:  eyJ0eXAiOiJKV1QiLCJub25jZSI6IlVhU.....
+```
