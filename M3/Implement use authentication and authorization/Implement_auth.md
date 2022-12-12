@@ -61,6 +61,8 @@ The modifiers you can set on a confidential client application builder are:
 
 ## Exercise: Implement interactive authentication by using MSAL.NET
 
+![alt text](images/auth_library_07.png)
+
 In this exercise you'll learn how to perform the following actions:
 
   * Register an application with the Microsoft identity platform
