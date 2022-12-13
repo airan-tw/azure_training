@@ -2,223 +2,105 @@
 
 A shared access signature (SAS) is a signed URI that points to one or more storage resources and includes a token that contains a special set of query parameters. The token indicates how the resources may be accessed by the client. One of the query parameters, the signature, is constructed from the SAS parameters and signed with the key that was used to create the SAS. This signature is used by Azure Storage to authorize access to the storage resource.
 
+### Types of shared access signatures
 
+Azure Storage supports three types of shared access signatures:
 
+ * **User delegation SAS:** A user delegation SAS is secured with Azure Active Directory credentials and also by the permissions specified for the SAS. A user delegation SAS applies to Blob storage only.
 
+ * **Service SAS:** A service SAS is secured with the storage account key. A service SAS delegates access to a resource in the following Azure Storage services: Blob storage, Queue storage, Table storage, or Azure Files.
 
+ * **Account SAS:** An account SAS is secured with the storage account key. An account SAS delegates access to resources in one or more of the storage services. All of the operations available via a service or user delegation SAS are also available via an account SAS.
 
-### Application types and scenarios
+### Best practices
 
-Using MSAL, a token can be acquired from a number of application types: web applications, web APIs, single-page apps (JavaScript), mobile and native applications, and daemons and server-side applications. MSAL currently supports the platforms and frameworks listed in the table below.
+To reduce the potential risks of using a SAS, Microsoft provides some guidance:
 
-![alt text](images/auth_library_01.png)
+ * To securely distribute a SAS and prevent man-in-the-middle attacks, always use HTTPS.
+ * The most secure SAS is a user delegation SAS. Use it wherever possible because it removes the need to store your storage account key in code. You must use Azure Active Directory to manage credentials. This option might not be possible for your solution.
+ * Try to set your expiration time to the smallest useful value. If a SAS key becomes compromised, it can be exploited for only a short time.
+ * Apply the rule of minimum-required privileges. Only grant the access that's required. For example, in your app, read-only access is sufficient.
+ * There are some situations where a SAS isn't the correct solution. When there's an unacceptable risk of using a SAS, create a middle-tier service to manage users and their access to storage.
 
-### Authentication flows
+The most flexible and secure way to use a service or account SAS is to associate the SAS tokens with a stored access policy.
 
-Below are some of the different authentication flows provided by Microsoft Authentication Library (MSAL). These flows can be used in a variety of different application scenarios.
+### How shared access signatures work
 
-There are several components that make up the Microsoft identity platform:
+When you use a SAS to access data stored in Azure Storage, you need two components. The first is a URI to the resource you want to access. The second part is a SAS token that you've created to authorize access to that resource.
 
-![alt text](images/auth_library_02.png)
+In a single URI, such as https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D, you can separate the URI from the SAS token as follows:
 
-### Public client, and confidential client applications
+ * **URI**: https://medicalrecords.blob.core.windows.net/patient-images/patient-116139-nq8z7f.jpg?
+ * **SAS token**: sp=r&st=2020-01-20T11:42:32Z&se=2020-01-20T19:42:32Z&spr=https&sv=2019-02-02&sr=b&sig=SrW1HZ5Nb6MbRzTbXCaPm%2BJiSEn15tC91Y4umMPwVZs%3D
 
-Security tokens can be acquired by multiple types of applications. These applications tend to be separated into the following two categories. Each is used with different libraries and objects.
+The SAS token itself is made up of several components.
 
-  * **Public client applications:** Are apps that run on devices or desktop computers or in a web browser. They're not trusted to safely keep application secrets, so they only access web APIs on behalf of the user. (They support only public client flows.) Public clients can't hold configuration-time secrets, so they don't have client secrets.
+![alt text](images/shared_access_01.png)
 
-  * **Confidential client applications:** Are apps that run on servers (web apps, web API apps, or even service/daemon apps). They're considered difficult to access, and for that reason capable of keeping an application secret. Confidential clients can hold configuration-time secrets. Each instance of the client has a distinct configuration (including client ID and client secret).
+## Choose when to use shared access signatures
 
-## Initialize client applications
+Use a SAS when you want to provide secure access to resources in your storage account to any client who does not otherwise have permissions to those resources.
 
-With MSAL.NET 3.x, the recommended way to instantiate an application is by using the application builders: `PublicClientApplicationBuilder` and `ConfidentialClientApplicationBuilder`. They offer a powerful mechanism to configure the application either from the code, or from a configuration file, or even by mixing both approaches.
+A common scenario where a SAS is useful is a service where users read and write their own data to your storage account. In a scenario where a storage account stores user data, there are two typical design patterns:
 
-Before initializing an application, you first need to register it so that your app can be integrated with the Microsoft identity platform. After registration, you may need the following information (which can be found in the Azure portal):
+ * Clients upload and download data via a front-end proxy service, which performs authentication. This front-end proxy service has the advantage of allowing validation of business rules, but for large amounts of data or high-volume transactions, creating a service that can scale to match demand may be expensive or difficult.
 
-  * The client ID (a string representing a GUID)
-  * The identity provider URL (named the instance) and the sign-in audience for your application. These two parameters are collectively known as the authority.
-  * The tenant ID if you are writing a line of business application solely for your organization (also named single-tenant application).
-  * The application secret (client secret string) or certificate (of type X509Certificate2) if it's a confidential client app.
-  * For web apps, and sometimes for public client apps (in particular when your app needs to use a broker), you'll have also set the redirectUri where the identity provider will contact back your application with the security tokens.
+![alt text](images/shared_access_02.png)
 
-![alt text](images/auth_library_03.png)
+ * A lightweight service authenticates the client as needed and then generates a SAS. Once the client application receives the SAS, they can access storage account resources directly with the permissions defined by the SAS and for the interval allowed by the SAS. The SAS mitigates the need for routing all data through the front-end proxy service.
 
-### Modifiers common to public and confidential client applications
+![alt text](images/shared_access_03.png)
 
-The table below lists some of the modifiers you can set on a public, or client confidential client.
+Many real-world services may use a hybrid of these two approaches. For example, some data might be processed and validated via the front-end proxy, while other data is saved and/or read directly using SAS.
 
-![alt text](images/auth_library_04.png)
+Additionally, a SAS is required to authorize access to the source object in a copy operation in certain scenarios:
 
-### Modifiers specific to confidential client applications
+ * When you copy a blob to another blob that resides in a different storage account, you must use a SAS to authorize access to the source blob. You can optionally use a SAS to authorize access to the destination blob as well.
+ * When you copy a file to another file that resides in a different storage account, you must use a SAS to authorize access to the source file. You can optionally use a SAS to authorize access to the destination file as well.
+ * When you copy a blob to a file, or a file to a blob, you must use a SAS to authorize access to the source object, even if the source and destination objects reside within the same storage account.
 
-The modifiers you can set on a confidential client application builder are:
+## Stored access policies
 
-![alt text](images/auth_library_05.png)
+A stored access policy provides an additional level of control over service-level shared access signatures (SAS) on the server side. Establishing a stored access policy groups shared access signatures and provides additional restrictions for signatures that are bound by the policy. You can use a stored access policy to change the start time, expiry time, or permissions for a signature, or to revoke it after it has been issued.
 
-## Exercise: Implement interactive authentication by using MSAL.NET
+The following storage resources support stored access policies:
 
-In this exercise you'll learn how to perform the following actions:
+ * Blob containers
+ * File shares
+ * Queues
+ * Tables
 
-  * Register an application with the Microsoft identity platform
-  * Use the PublicClientApplicationBuilder class in MSAL.NET
-  * Acquire a token interactively in a console application
+### Creating a stored access policy
 
-### Register a new application
+The access policy for a SAS consists of the start time, expiry time, and permissions for the signature. You can specify all of these parameters on the signature URI and none within the stored access policy; all on the stored access policy and none on the URI; or some combination of the two. However, you cannot specify a given parameter on both the SAS token and the stored access policy.
 
-1. Sign in to the portal: https://portal.azure.com
+To create or modify a stored access policy, call the Set ACL operation for the resource with a request body that specifies the terms of the access policy. The body of the request includes a unique signed identifier of your choosing, up to 64 characters in length, and the optional parameters of the access policy, as follows:
 
-2. Search for and select Azure Active Directory.
-
-3. Under Manage, select App registrations > New registration.
-
-4. When the Register an application page appears, enter your application's registration information:
-
-|**Field** | **Value** |
-| -------- | --------- |
-|Name	| `az204appreg`|
-|Supported account types	| Select **Accounts in this organizational directory only**|
-|Redirect URI (optional)	|Select **Public client/native (mobile & desktop)** and enter `http://localhost` in the box to the right.|
-
-Below are more details on the Supported account types.
-
-5. Select **Register**.
-
-Azure Active Directory assigns a unique application (client) ID to your app, and you're taken to your application's **Overview** page.
-
-### Set up the console application
-
-1. Launch Visual Studio Code and open a terminal by selecting Terminal and then New Terminal.
-
-2. Create a folder for the project and change in to the folder.
-
-```azurecli-interactive
-md az204-auth
-cd az204-auth
-```
-
-3. Create the .NET console app.
-
-```azurecli-interactive
-dotnet new console
-```
-
-4. Open the az204-auth folder in VS Code.
-
-```azurecli-interactive
-code . -r
-```
-
-### Build the console app
-
-In this section you will add the necessary packages and code to the project.
-
-### Add packages and using statements
-
-1. Add the `Microsoft.Identity.Client` package to the project in a terminal in VS Code.
-
-```azurecli-interactive
-dotnet add package Microsoft.Identity.Client
-```
-
-2. Open the Program.cs file and add `using` statements to include `Microsoft.Identity.Client` and to enable async operations.
-
-```azurecli-interactive
-using System.Threading.Tasks;
-using Microsoft.Identity.Client;
-```
-
-3. Change the Main method to enable async.
-
-```azurecli-interactive
-public static async Task Main(string[] args)
-```
-
-### Add code for the interactive authentication
-
-1. We'll need two variables to hold the Application (client) and Directory (tenant) IDs. You can copy those values from the portal. Add the code below and replace the string values with the appropriate values from the portal.
-
-```azurecli-interactive
-private const string _clientId = "APPLICATION_CLIENT_ID";
-private const string _tenantId = "DIRECTORY_TENANT_ID";
-```
-
-2. Use the `PublicClientApplicationBuilder` class to build out the authorization context.
-
-```azurecli-interactive
-var app = PublicClientApplicationBuilder
-    .Create(_clientId)
-    .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
-    .WithRedirectUri("http://localhost")
-    .Build();
-```
-
-|**Code** | **Description** |
-| --- | --- |
-| `.Create` | Creates a `PublicClientApplicationBuilder` from a clientID.|
-|`.WithAuthority`		| Adds a known Authority corresponding to an ADFS server. In the code we're specifying the Public cloud, and using the tenant for the app we registered.|
-
-### Acquire a token
-
-When you registered the az204appreg app it automatically generated an API permission user.read for Microsoft Graph. We'll use that permission to acquire a token.
-
-1. Set the permission scope for the token request. Add the following code below the `PublicClientApplicationBuilder`.
-
-```azurecli-interactive
-string[] scopes = { "user.read" };
-```
-
-2. Add code to request the token and write the result out to the console.
-
-```azurecli-interactive
-AuthenticationResult result = await app.AcquireTokenInteractive(scopes).ExecuteAsync();
-
-Console.WriteLine($"Token:\t{result.AccessToken}");
-```
-
-### Review completed application
-
-The contents of the Program.cs file should resemble the example below.
-
-```azurecli-interactive
-using System;
-using System.Threading.Tasks;
-using Microsoft.Identity.Client;
-
-namespace az204_auth
+ * **C#**
+ 
+ ```azurecli-interactive
+BlobSignedIdentifier identifier = new BlobSignedIdentifier
 {
-    class Program
+    Id = "stored access policy identifier",
+    AccessPolicy = new BlobAccessPolicy
     {
-        private const string _clientId = "APPLICATION_CLIENT_ID";
-        private const string _tenantId = "DIRECTORY_TENANT_ID";
-
-        public static async Task Main(string[] args)
-        {
-            var app = PublicClientApplicationBuilder
-                .Create(_clientId)
-                .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
-                .WithRedirectUri("http://localhost")
-                .Build(); 
-            string[] scopes = { "user.read" };
-            AuthenticationResult result = await app.AcquireTokenInteractive(scopes).ExecuteAsync();
-
-            Console.WriteLine($"Token:\t{result.AccessToken}");
-        }
+        ExpiresOn = DateTimeOffset.UtcNow.AddHours(1),
+        Permissions = "rw"
     }
-}
+};
+
+blobContainer.SetAccessPolicy(permissions: new BlobSignedIdentifier[] { identifier });
 ```
 
-### Run the application
+ * **Azure CLI**
 
-1. In the VS Code terminal run `dotnet build` to check for errors, then `dotnet run` to run the app.
-
-2. The app will open the default browser prompting you to select the account you want to authenticate with. If there are multiple accounts listed select the one associated with the tenant used in the app.
-
-3. If this is the first time you've authenticated to the registered app you will receive a **Permissions requested** notification asking you to approve the app to read data associated with your account. Select Accept.
-
-![alt text](images/auth_library_06.png)
-
-4. You should see the results similar to the example below in the console.
-
-```azurecli-interactive
-Token:  eyJ0eXAiOiJKV1QiLCJub25jZSI6IlVhU.....
+ ```azurecli-interactive
+az storage container policy create \
+    --name <stored access policy identifier> \
+    --container-name <container name> \
+    --start <start time UTC datetime> \
+    --expiry <expiry time UTC datetime> \
+    --permissions <(a)dd, (c)reate, (d)elete, (l)ist, (r)ead, or (w)rite> \
+    --account-key <storage account key> \
+    --account-name <storage account name> \
 ```
