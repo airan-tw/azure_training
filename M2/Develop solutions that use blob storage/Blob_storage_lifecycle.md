@@ -188,3 +188,22 @@ az storage account management-policy create \
 ```
 
 A lifecycle management policy must be read or written in full. Partial updates are not supported.
+
+## Rehydrate blob data from the archive tier
+
+While a blob is in the archive access tier, it's considered to be offline and can't be read or modified. In order to read or modify data in an archived blob, you must first rehydrate the blob to an online tier, either the hot or cool tier. There are two options for rehydrating a blob that is stored in the archive tier:
+
+ * **Copy an archived blob to an online tier**: You can rehydrate an archived blob by copying it to a new blob in the hot or cool tier with the Copy Blob or Copy Blob from URL operation. Microsoft recommends this option for most scenarios.
+
+ * **Change a blob's access tier to an online tier**: You can rehydrate an archived blob to hot or cool by changing its tier using the Set Blob Tier operation.
+
+Rehydrating a blob from the archive tier can take several hours to complete. Microsoft recommends rehydrating larger blobs for optimal performance. Rehydrating several small blobs concurrently may require additional time.
+
+### Rehydration priority
+
+When you rehydrate a blob, you can set the priority for the rehydration operation via the optional `x-ms-rehydrate-priority` header on a Set Blob Tier or Copy Blob/Copy Blob From URL operation. Rehydration priority options include:
+
+ * **Standard priority**: The rehydration request will be processed in the order it was received and may take up to 15 hours.
+ * **High priority**: The rehydration request will be prioritized over standard priority requests and may complete in under one hour for objects under 10 GB in size.
+
+To check the rehydration priority while the rehydration operation is underway, call Get Blob Properties to return the value of the `x-ms-rehydrate-priority header`. The rehydration priority property returns either Standard or High.
