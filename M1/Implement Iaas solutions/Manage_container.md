@@ -152,7 +152,7 @@ In this exercise you will use ACR Tasks to perform the following actions:
 1. Create a resource group for the registry. 
 
 ```azurecli-interactive
-az group create --name az204-acr-rg --location --location eastus
+az group create --name az204-acr-rg --location eastus
 ```
 
 2. Create a basic container registry. The registry name must be unique within Azure, and contain 5-50 alphanumeric characters. Replace <myContainerRegistry> in the command below with a unique value.
