@@ -382,7 +382,7 @@ az group create --name az204-arm-rg --location eastus
 3. Use the `az deployment group create` command to deploy your template. The deployment will take a few minutes to complete, progress will be shown in the terminal.
  
 ```azurecli-interactive
-az  deployment group create --resource-group az204-arm-rg --template-file azuredeploy.json --parameters azuredeploy.parameters.json
+az deployment group create --resource-group az204-arm-rg --template-file azuredeploy.json --parameters azuredeploy.parameters.json
 ```
 
 4. You can verify the deployment by running the command below. Replace `<myStorageAccount>` with the name you used earlier.
