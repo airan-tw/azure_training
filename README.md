@@ -23,7 +23,7 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 ## Develop Azure compute solutions (25-30%)
 
-### [Implement IaaS solutions](https://github.com/airan-tw/azure_training/blob/main/M1/Implement%20Iaas%20solutions/README.md)
+### [Implement IaaS solutions](M1/Implement%20Iaas%20solutions/README.md)
 
   * Provision virtual machines in Azure
   * Create and deploy Azure Resource Manager templates
