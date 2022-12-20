@@ -11,7 +11,7 @@ The objective of this course is to teach developers how to create end-to-end sol
 - **Azure Account** (https://docs.google.com/document/d/1XEkiGWUC4_AzngZQLQnVt8yWCb3dft1HzXglUnJcJzM/edit)
 - **Azure Devops Account** (https://docs.google.com/document/d/12tL1KMNMq3IPNkeSPOVNTpzk0irfMFLNu68BLeUn-sI/edit?usp=sharing)
 - Create a workspace for the course with the command: `$ mkdir $HOME\training-az204 && cd $HOME\training-az204`.
-- Install Homebrew and type command `$ brew install wget` 
+- Install Homebrew and type command `$ brew install curl` 
 - Create a workspace for the course by executing the following command in a terminal: `mkdir $HOME\training-az204 && cd $HOME\training-az204`.
 - Download the content into the workspace directory with `$ curl -o $HOME\training-az204\allfiles.zip https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure/releases/download/v20210630.01/allfiles-v20210630.01.zip` and unzip with `$ unzip $HOME\training-az204\allfiles.zip`.
 
