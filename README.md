@@ -103,12 +103,6 @@ Exam AZ-204: Microsoft Azure Developer Associate – Skills Measured
 
 ## Connect to and consume Azure services and third-party services (25-30%)
 
-### [Develop an App Service Logic App](M5/Develop%20an%20App%20Service%20Logic%20App/README.md)
-
-  * Create a Logic App
-  * Create a custom connector for Logic Apps
-  * Create a custom template for Logic Apps
-
 ### [Implement API Management](M5/Implement%20API%20Management/README.md)
 
   * Create an APIM instance
